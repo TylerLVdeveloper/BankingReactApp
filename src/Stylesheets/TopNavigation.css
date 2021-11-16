@@ -1,0 +1,31 @@
+#top_nav_container {
+  width: 100vw;
+  height: auto;
+  float: left;
+  background-color: rgb(56, 56, 56);
+  color: white;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 100%;
+}
+
+.btn {
+  font-size: 1em;
+  text-align: center;
+  padding: 25px;
+  transition: all 0.7s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: rgb(32, 32, 32);
+}
+
+.active_btn {
+  color: white;
+  background-color: rgb(32, 32, 32);
+}
+
+.inactive_btn {
+  color: rgb(112, 112, 112);
+}
