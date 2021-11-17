@@ -10,7 +10,7 @@ const accountData = [
   },
   {
     accountType: "Savings",
-    balance: 4320.52,
+    balance: 4320,
     key: 1,
     transactions: [
       { id: 0, amount: 100, type: "deposit" },

@@ -4,6 +4,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 
 // Data Structures
 import navigationOptions from "./NavigationData.js";
+// import accountData from "./AccountData";
 
 // Top Navigation Component
 import TopNavigation from "./Components/TopNavigation";
@@ -13,14 +14,17 @@ import AccountSummary from "./Components/AccountSummary";
 import LoanRequests from "./Components/LoanRequest";
 import SendMoney from "./Components/SendMoney";
 import TransferFunds from "./Components/TransferFunds";
+import AccountDetails from "./Components/AccountDetails";
 
 class MainContent extends React.Component {
   render() {
     if (this.props.activeWindow === "Account Summary")
-      return <AccountSummary />;
+      return <AccountSummary BtnClick={(i) => this.props.BtnClick(i)} />;
     if (this.props.activeWindow === "Transfer Funds") return <TransferFunds />;
     if (this.props.activeWindow === "Request a Loan") return <LoanRequests />;
     if (this.props.activeWindow === "Send Money") return <SendMoney />;
+    if (this.props.activeWindow === "Account Details")
+      return <AccountDetails />;
   }
 }
 
@@ -31,6 +35,11 @@ class App extends React.Component {
       activeMenuOption: navigationOptions[0],
     };
     this.handleBtnClick = this.handleBtnClick.bind(this);
+    this.accntClick = this.accntClick.bind(this);
+  }
+
+  accntClick(i) {
+    this.setState({ activeMenuOption: { name: "Account Details", key: 4 } });
   }
 
   handleBtnClick(i) {
@@ -50,7 +59,11 @@ class App extends React.Component {
             classNames="contentChange"
           >
             <div className="main_content_container">
-              <MainContent activeWindow={this.state.activeMenuOption.name} />
+              <MainContent
+                key={this.state.activeMenuOption.key}
+                activeWindow={this.state.activeMenuOption.name}
+                BtnClick={(i) => this.accntClick(i)}
+              />
             </div>
           </CSSTransition>
         </TransitionGroup>

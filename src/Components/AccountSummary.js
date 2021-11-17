@@ -15,7 +15,7 @@ class UserGreeting extends React.Component {
 class Account extends React.Component {
   render() {
     return (
-      <div className="account">
+      <div className="account" onClick={() => this.props.BtnClick()}>
         <div className="accnt_type">
           <p>{this.props.accountType}</p>
         </div>
@@ -38,6 +38,7 @@ class AccountSummary extends React.Component {
               accountType={accnt.accountType}
               balance={accnt.balance}
               key={accnt.key}
+              BtnClick={() => this.props.BtnClick(i)}
             />
           );
         })}

@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: black;
   background-image: url("./images/iceland.jpg");
   background-repeat: no-repeat;
   background-size: cover;
