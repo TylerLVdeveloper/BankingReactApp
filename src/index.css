@@ -21,3 +21,28 @@ code {
   font-size: 3em;
   padding: 200px;
 }
+
+.main_content_container {
+  position: absolute;
+  top: 100px;
+  width: 100vw;
+  height: 900px;
+}
+
+.contentChange-enter {
+  opacity: 0;
+}
+
+.contentChange-enter.contentChange-enter-active {
+  opacity: 1;
+  transition: all 0.5s 0.5s;
+}
+
+.contentChange-exit {
+  opacity: 1;
+}
+
+.contentChange-exit.contentChange-exit-active {
+  opacity: 0;
+  transition: all 0.5s;
+}

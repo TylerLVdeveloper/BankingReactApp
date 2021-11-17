@@ -1,10 +1,6 @@
 import React from "react";
 import "../Stylesheets/AccountSummary.css";
-
-const accountData = [
-  { accountType: "Checking", balance: 2000, key: 0 },
-  { accountType: "Savings", balance: 4322, key: 1 },
-];
+import accountData from "../AccountData.js";
 
 class UserGreeting extends React.Component {
   render() {

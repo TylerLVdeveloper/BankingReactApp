@@ -11,6 +11,8 @@ class Button extends React.Component {
         onClick={() => this.props.BtnClick()}
       >
         {this.props.buttonName}
+        <br />
+        <img src={this.props.icon} alt="" />
       </div>
     );
   }
@@ -30,6 +32,7 @@ class TopNavigation extends React.Component {
                   : "inactive_btn btn"
               }
               buttonName={btn.name}
+              icon={btn.icon}
               BtnClick={() => this.props.BtnClick(i)}
             />
           );

@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 
 // Data Structures
 import navigationOptions from "./NavigationData.js";
@@ -42,7 +43,17 @@ class App extends React.Component {
           BtnClick={(i) => this.handleBtnClick(i)}
           activeMenuOption={this.state.activeMenuOption}
         />
-        <MainContent activeWindow={this.state.activeMenuOption.name} />
+        <TransitionGroup>
+          <CSSTransition
+            key={this.state.activeMenuOption.key}
+            timeout={1000}
+            classNames="contentChange"
+          >
+            <div className="main_content_container">
+              <MainContent activeWindow={this.state.activeMenuOption.name} />
+            </div>
+          </CSSTransition>
+        </TransitionGroup>
       </div>
     );
   }

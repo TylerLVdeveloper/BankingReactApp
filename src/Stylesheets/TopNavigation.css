@@ -1,7 +1,8 @@
 #top_nav_container {
+  position: absolute;
+  top: 0px;
   width: 100vw;
-  height: auto;
-  float: left;
+  height: 100px;
   background-color: rgb(56, 56, 56);
   color: white;
   display: grid;
@@ -12,8 +13,9 @@
 .btn {
   font-size: 1em;
   text-align: center;
-  padding: 25px;
+  padding: 5%;
   transition: all 0.7s;
+  color: white;
 }
 
 .btn:hover {
@@ -22,10 +24,15 @@
 }
 
 .active_btn {
-  color: white;
   background-color: rgb(32, 32, 32);
 }
 
 .inactive_btn {
-  color: rgb(112, 112, 112);
+  opacity: 0.5;
+}
+
+img {
+  padding-top: 10px;
+  width: 35px;
+  height: 35px;
 }
