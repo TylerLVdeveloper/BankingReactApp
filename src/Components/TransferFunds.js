@@ -3,12 +3,63 @@ import "../Stylesheets/TransferFunds.css";
 import accountData from "../AccountData";
 import dollarSign from "../images/dollarSign.png";
 
+class TransferComplete extends React.Component {
+  render() {
+    return (
+      <div className="animation_container">
+        Transfer Complete!
+        <div onClick={() => this.props.changeView("account summary")}>
+          View Account Summary
+        </div>
+        <div onClick={() => this.props.changeView("transferDetails")}>
+          Make another transfer
+        </div>
+      </div>
+    );
+  }
+}
+
+class ProcessingAnimation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      timer: 5,
+    };
+    this.tick = this.tick.bind(this);
+  }
+
+  tick() {
+    this.setState({
+      timer: this.state.timer - 1,
+    });
+  }
+
+  componentDidMount() {
+    this.countdown = setInterval(() => {
+      if (this.state.timer > 1) {
+        this.tick();
+      } else {
+        clearInterval(this.countdown);
+        this.props.transactionComplete();
+      }
+    }, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.countdown);
+  }
+
+  render() {
+    return <div className="animation_container">Test: {this.state.timer}</div>;
+  }
+}
+
 class ConfirmationScreen extends React.Component {
   render() {
     return (
       <div className="confirmation_container">
         Confirm Transaction <br />
-        <div onClick={this.props.confirm}>Yes</div>
+        <div onClick={() => this.props.confirm()}>Yes</div>
       </div>
     );
   }
@@ -171,6 +222,8 @@ class TransferFunds extends React.Component {
     };
     this.startTransaction = this.startTransaction.bind(this);
     this.processTransaction = this.processTransaction.bind(this);
+    this.transactionComplete = this.transactionComplete.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
 
   startTransaction(transactionDetails) {
@@ -185,6 +238,16 @@ class TransferFunds extends React.Component {
     let transaction = this.state.currentTransaction;
     transaction.sendAccnt.balance -= Number(transaction.transferAmount);
     transaction.recAccnt.balance += Number(transaction.transferAmount);
+
+    this.changeView("processingAnimation");
+  }
+
+  transactionComplete() {
+    this.setState({ screenView: "transferComplete" });
+  }
+
+  changeView(viewChoice) {
+    this.setState({ screenView: viewChoice });
   }
 
   render() {
@@ -199,6 +262,20 @@ class TransferFunds extends React.Component {
 
     if (this.state.screenView === "confirmationScreen")
       return <ConfirmationScreen confirm={() => this.processTransaction()} />;
+
+    if (this.state.screenView === "processingAnimation")
+      return (
+        <ProcessingAnimation
+          transactionComplete={() => this.transactionComplete()}
+        />
+      );
+
+    if (this.state.screenView === "transferComplete")
+      return (
+        <TransferComplete
+          changeView={(viewChoice) => this.changeView(viewChoice)}
+        />
+      );
   }
 }
 
