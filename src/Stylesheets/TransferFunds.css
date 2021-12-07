@@ -70,16 +70,54 @@ select {
 }
 
 .confirmation_container {
-  width: 50%;
+  width: 40%;
   height: 300px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
-  background-color: rgb(255, 255, 255, 0.5);
-  color: black;
-  font-size: 2em;
+  color: white;
   text-align: center;
+}
+
+#confirmation_message {
+  font-size: 1.3em;
+  font-family: "Heebo", sans-serif;
+  font-weight: 400;
+}
+
+.transfer_funds_btn {
+  width: 30%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 6px;
   border-radius: 5px;
+  color: white;
+  transition: background-color 0.8s;
+  font-size: 1.5em;
+  font-family: "Heebo", sans-serif;
+}
+
+.transfer_funds_btn:hover {
+  cursor: pointer;
+}
+
+#transfer_funds_confirm_btn {
+  background-color: rgba(47, 194, 34, 0.35);
+  margin-bottom: 5px;
+}
+
+#transfer_funds_confirm_btn:hover {
+  background-color: rgb(47, 194, 34, 0.8);
+}
+
+#transfer_funds_cancel_btn {
+  background-color: rgba(252, 0, 0, 0.35);
+  margin-bottom: 5px;
+}
+
+#transfer_funds_cancel_btn:hover {
+  background-color: rgb(252, 0, 0, 0.8);
 }
 
 .animation_container {

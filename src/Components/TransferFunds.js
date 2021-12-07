@@ -54,11 +54,28 @@ class ProcessingAnimation extends React.Component {
 
 class ConfirmationScreen extends React.Component {
   render() {
+    const transaction = this.props.transactionDetails;
+    const message = `Are you sure you want to transfer $${transaction.transferAmount} from
+    your ${transaction.sendAccnt.accountType} Account (${transaction.sendAccnt.accountNumber}) to your ${transaction.recAccnt.accountType} Account (${transaction.recAccnt.accountNumber})? `;
+
     return (
       <div className="confirmation_container">
-        Confirm Transaction <br />
-        <div onClick={() => this.props.confirm()}>Yes</div>
-        <div onClick={() => this.props.cancel()}>Cancel</div>
+        <p id="confirmation_message">{message}</p>
+
+        <div
+          className="transfer_funds_btn"
+          id="transfer_funds_confirm_btn"
+          onClick={() => this.props.confirm()}
+        >
+          Yes, transfer
+        </div>
+        <div
+          className="transfer_funds_btn"
+          id="transfer_funds_cancel_btn"
+          onClick={() => this.props.cancel()}
+        >
+          No, cancel
+        </div>
       </div>
     );
   }
@@ -264,6 +281,7 @@ class TransferFunds extends React.Component {
         <ConfirmationScreen
           confirm={() => this.processTransaction()}
           cancel={() => this.changeView("transferDetails")}
+          transactionDetails={this.state.currentTransaction}
         />
       );
 
