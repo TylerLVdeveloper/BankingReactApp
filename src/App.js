@@ -20,7 +20,8 @@ class MainContent extends React.Component {
   render() {
     if (this.props.activeWindow === "Account Summary")
       return <AccountSummary BtnClick={(i) => this.props.BtnClick(i)} />;
-    if (this.props.activeWindow === "Transfer Funds") return <TransferFunds />;
+    if (this.props.activeWindow === "Transfer Funds")
+      return <TransferFunds returnHome={() => this.props.returnHome()} />;
     if (this.props.activeWindow === "Request a Loan") return <LoanRequests />;
     if (this.props.activeWindow === "Send Money") return <SendMoney />;
     if (this.props.activeWindow === "Account Details")
@@ -45,6 +46,11 @@ class App extends React.Component {
   handleBtnClick(i) {
     this.setState({ activeMenuOption: navigationOptions[i] });
   }
+
+  returnHome() {
+    this.setState({ activeMenuOption: navigationOptions[0] });
+  }
+
   render() {
     return (
       <div>
@@ -63,6 +69,7 @@ class App extends React.Component {
                 key={this.state.activeMenuOption.key}
                 activeWindow={this.state.activeMenuOption.name}
                 BtnClick={(i) => this.accntClick(i)}
+                returnHome={() => this.returnHome()}
               />
             </div>
           </CSSTransition>

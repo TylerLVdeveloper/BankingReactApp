@@ -8,9 +8,7 @@ class TransferComplete extends React.Component {
     return (
       <div className="animation_container">
         Transfer Complete!
-        <div onClick={() => this.props.changeView("account summary")}>
-          View Account Summary
-        </div>
+        <div onClick={() => this.props.returnHome()}>View Account Summary</div>
         <div onClick={() => this.props.changeView("transferDetails")}>
           Make another transfer
         </div>
@@ -60,6 +58,7 @@ class ConfirmationScreen extends React.Component {
       <div className="confirmation_container">
         Confirm Transaction <br />
         <div onClick={() => this.props.confirm()}>Yes</div>
+        <div onClick={() => this.props.cancel()}>Cancel</div>
       </div>
     );
   }
@@ -261,7 +260,12 @@ class TransferFunds extends React.Component {
       );
 
     if (this.state.screenView === "confirmationScreen")
-      return <ConfirmationScreen confirm={() => this.processTransaction()} />;
+      return (
+        <ConfirmationScreen
+          confirm={() => this.processTransaction()}
+          cancel={() => this.changeView("transferDetails")}
+        />
+      );
 
     if (this.state.screenView === "processingAnimation")
       return (
@@ -274,6 +278,7 @@ class TransferFunds extends React.Component {
       return (
         <TransferComplete
           changeView={(viewChoice) => this.changeView(viewChoice)}
+          returnHome={() => this.props.returnHome()}
         />
       );
   }
