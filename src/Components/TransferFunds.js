@@ -6,11 +6,22 @@ import dollarSign from "../images/dollarSign.png";
 class TransferComplete extends React.Component {
   render() {
     return (
-      <div className="animation_container">
-        Transfer Complete!
-        <div onClick={() => this.props.returnHome()}>View Account Summary</div>
-        <div onClick={() => this.props.changeView("transferDetails")}>
-          Make another transfer
+      <div className="transfer_message_container">
+        <p id="transfer_complete_message">Transfer Complete!</p>
+
+        <div
+          className="transfer_complete_btn"
+          id="return_home_btn"
+          onClick={() => this.props.returnHome()}
+        >
+          View Account Summary
+        </div>
+        <div
+          className="transfer_complete_btn"
+          id="new_transfer_btn"
+          onClick={() => this.props.changeView("transferDetails")}
+        >
+          Start a New Transfer
         </div>
       </div>
     );
@@ -59,7 +70,7 @@ class ConfirmationScreen extends React.Component {
     your ${transaction.sendAccnt.accountType} Account (${transaction.sendAccnt.accountNumber}) to your ${transaction.recAccnt.accountType} Account (${transaction.recAccnt.accountNumber})? `;
 
     return (
-      <div className="confirmation_container">
+      <div className="transfer_message_container">
         <p id="confirmation_message">{message}</p>
 
         <div
@@ -214,7 +225,7 @@ class TransferDetails extends React.Component {
               type="number"
               id="Amount"
               className="transfer_field"
-              placeholder="ex 20.00"
+              placeholder="ex. 20.00"
               value={this.state.transferAmount}
               onChange={this.handleChange}
             />

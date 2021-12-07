@@ -48,20 +48,7 @@ select {
 }
 
 #transfer_btn {
-  background-color: rgba(29, 226, 3, 0.5);
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 25px;
-  padding-right: 25px;
-  text-align: center;
-  margin-top: 20px;
-  border-radius: 5px;
   transition: background-color 0.7s;
-  font-size: 1.4em;
-  transition: background-color 1s;
 }
 
 #transfer_btn:hover {
@@ -69,7 +56,7 @@ select {
   cursor: pointer;
 }
 
-.confirmation_container {
+.transfer_message_container {
   width: 40%;
   height: 300px;
   margin-left: auto;
@@ -77,6 +64,23 @@ select {
   margin-top: 50px;
   color: white;
   text-align: center;
+}
+
+#new_transfer_btn {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#new_transfer_btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+#return_home_btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-bottom: 5px;
+}
+
+#return_home_btn:hover {
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 #confirmation_message {
@@ -118,6 +122,28 @@ select {
 
 #transfer_funds_cancel_btn:hover {
   background-color: rgb(252, 0, 0, 0.8);
+}
+
+.transfer_complete_btn {
+  width: 50%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 6px;
+  border-radius: 5px;
+  color: white;
+  transition: background-color 0.8s;
+  font-size: 1.2em;
+  font-family: "Heebo", sans-serif;
+}
+
+.transfer_complete_btn:hover {
+  cursor: pointer;
+}
+
+#transfer_complete_message {
+  font-size: 3em;
+  font-weight: 200;
 }
 
 .animation_container {
