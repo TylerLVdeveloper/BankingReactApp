@@ -229,11 +229,12 @@ class TransferDetails extends React.Component {
               value={this.state.transferAmount}
               onChange={this.handleChange}
             />
-            <input
-              type={this.state.readyToSubmit ? "submit" : "hidden"}
-              value="Transfer"
-              id="transfer_btn"
-            />
+            <div id="transfer_btn">
+              <input
+                type={this.state.readyToSubmit ? "submit" : "hidden"}
+                value="Transfer"
+              />
+            </div>
           </form>
         </div>
       </div>

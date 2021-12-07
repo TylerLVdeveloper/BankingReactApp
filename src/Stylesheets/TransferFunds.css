@@ -47,11 +47,16 @@ select {
   opacity: 0.55;
 }
 
-#transfer_btn {
+#transfer_btn input {
+  background-color: rgba(29, 226, 3, 0.425);
+  width: 50%;
   transition: background-color 0.7s;
+  margin-top: 10px;
+  margin-left: 25%;
+  margin-right: 25%;
 }
 
-#transfer_btn:hover {
+#transfer_btn input:hover {
   background-color: rgba(29, 226, 3, 0.8);
   cursor: pointer;
 }
