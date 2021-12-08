@@ -2,6 +2,8 @@ import React from "react";
 import "../Stylesheets/TransferFunds.css";
 import accountData from "../AccountData";
 import dollarSign from "../images/dollarSign.png";
+import cashIcon from "../images/cashIcon.png";
+import accntIcon from "../images/accountSummaryIcon.png";
 
 class TransferComplete extends React.Component {
   render() {
@@ -32,7 +34,7 @@ class ProcessingAnimation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timer: 5,
+      timer: 7,
     };
     this.tick = this.tick.bind(this);
   }
@@ -59,7 +61,39 @@ class ProcessingAnimation extends React.Component {
   }
 
   render() {
-    return <div className="animation_container">Test: {this.state.timer}</div>;
+    const transaction = this.props.transactionDetails;
+    return (
+      <div>
+        <div id="animation_title">Transferring</div>
+        <div id="animation_container">
+          <div id="fromAccnt">
+            <img src={accntIcon} alt="" />
+            {transaction.sendAccnt.accountType}{" "}
+            {transaction.sendAccnt.accountNumber}
+          </div>
+          <div id="cash_icon">
+            <img src={cashIcon} alt="" />
+          </div>
+          <div id="cash_icon2">
+            <img src={cashIcon} alt="" />
+          </div>
+          <div id="cash_icon3">
+            <img src={cashIcon} alt="" />
+          </div>
+          <div id="cash_icon4">
+            <img src={cashIcon} alt="" />
+          </div>
+          <div id="cash_icon5">
+            <img src={cashIcon} alt="" />
+          </div>
+          <div id="toAccnt">
+            <img src={accntIcon} alt="" />
+            {transaction.recAccnt.accountType}{" "}
+            {transaction.recAccnt.accountNumber}
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 
@@ -301,6 +335,7 @@ class TransferFunds extends React.Component {
       return (
         <ProcessingAnimation
           transactionComplete={() => this.transactionComplete()}
+          transactionDetails={this.state.currentTransaction}
         />
       );
 
