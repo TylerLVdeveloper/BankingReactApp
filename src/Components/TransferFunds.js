@@ -5,6 +5,8 @@ import dollarSign from "../images/dollarSign.png";
 import cashIcon from "../images/cashIcon.png";
 import accntIcon from "../images/accountSummaryIcon.png";
 
+import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
+
 class TransferComplete extends React.Component {
   render() {
     return (
@@ -276,6 +278,44 @@ class TransferDetails extends React.Component {
   }
 }
 
+class TransferFundsContainer extends React.Component {
+  render() {
+    if (this.props.screenView === "transferDetails")
+      return (
+        <TransferDetails
+          startTransaction={(transactionDetails) =>
+            this.props.startTransaction(transactionDetails)
+          }
+        />
+      );
+
+    if (this.props.screenView === "confirmationScreen")
+      return (
+        <ConfirmationScreen
+          confirm={() => this.props.confirm()}
+          cancel={() => this.props.cancel()}
+          transactionDetails={this.props.currentTransaction}
+        />
+      );
+
+    if (this.props.screenView === "processingAnimation")
+      return (
+        <ProcessingAnimation
+          transactionComplete={() => this.props.transactionComplete()}
+          transactionDetails={this.props.currentTransaction}
+        />
+      );
+
+    if (this.props.screenView === "transferComplete")
+      return (
+        <TransferComplete
+          changeView={(viewChoice) => this.props.changeView(viewChoice)}
+          returnHome={() => this.props.returnHome()}
+        />
+      );
+  }
+}
+
 class TransferFunds extends React.Component {
   constructor(props) {
     super(props);
@@ -301,7 +341,7 @@ class TransferFunds extends React.Component {
     transaction.sendAccnt.balance -= Number(transaction.transferAmount);
     transaction.recAccnt.balance += Number(transaction.transferAmount);
 
-    this.changeView("processingAnimation");
+    this.setState({ screenView: "processingAnimation" });
   }
 
   transactionComplete() {
@@ -313,39 +353,31 @@ class TransferFunds extends React.Component {
   }
 
   render() {
-    if (this.state.screenView === "transferDetails")
-      return (
-        <TransferDetails
-          startTransaction={(transactionDetails) =>
-            this.startTransaction(transactionDetails)
-          }
-        />
-      );
-
-    if (this.state.screenView === "confirmationScreen")
-      return (
-        <ConfirmationScreen
-          confirm={() => this.processTransaction()}
-          cancel={() => this.changeView("transferDetails")}
-          transactionDetails={this.state.currentTransaction}
-        />
-      );
-
-    if (this.state.screenView === "processingAnimation")
-      return (
-        <ProcessingAnimation
-          transactionComplete={() => this.transactionComplete()}
-          transactionDetails={this.state.currentTransaction}
-        />
-      );
-
-    if (this.state.screenView === "transferComplete")
-      return (
-        <TransferComplete
-          changeView={(viewChoice) => this.changeView(viewChoice)}
-          returnHome={() => this.props.returnHome()}
-        />
-      );
+    return (
+      <div id="transfer_funds_container">
+        <TransitionGroup>
+          <CSSTransition
+            key={this.state.screenView}
+            timeout={1000}
+            classNames="contentChange"
+          >
+            <TransferFundsContainer
+              screenView={this.state.screenView}
+              key={this.state.screenView}
+              startTransaction={(transactionDetails) =>
+                this.startTransaction(transactionDetails)
+              }
+              confirm={() => this.processTransaction()}
+              cancel={() => this.changeView("transferDetails")}
+              currentTransaction={this.state.currentTransaction}
+              transactionComplete={() => this.transactionComplete()}
+              changeView={(viewChoice) => this.changeView(viewChoice)}
+              returnHome={() => this.props.returnHome()}
+            />
+          </CSSTransition>
+        </TransitionGroup>
+      </div>
+    );
   }
 }
 

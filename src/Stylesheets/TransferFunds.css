@@ -1,4 +1,13 @@
+#transfer_funds_container {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: auto;
+}
+
 #transfer_container {
+  position: absolute;
+  top: 0px;
   width: 50vw;
   height: auto;
   margin-left: 25vw;
@@ -62,11 +71,11 @@ select {
 }
 
 .transfer_message_container {
+  position: absolute;
+  top: 50px;
   width: 40%;
   height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
+  margin-left: 30%;
   color: white;
   text-align: center;
 }
