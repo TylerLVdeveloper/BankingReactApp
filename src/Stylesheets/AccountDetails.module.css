@@ -1,0 +1,61 @@
+#account_details_container {
+  background-color: rgba(255, 255, 255, 0.562);
+  border-radius: 0 0 5px 5px;
+  width: 75%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 30px;
+}
+
+#account_heading {
+  background-color: none;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-family: "Heebo", sans-serif;
+  margin-bottom: 50px;
+}
+
+#accountTitle {
+  color: rgb(0, 0, 0);
+  font-weight: 350;
+  font-size: 2.8em;
+}
+
+#accountNumber {
+  color: rgb(34, 34, 34);
+  font-weight: 300;
+  font-size: 1.5em;
+}
+
+.transaction {
+  padding: 1%;
+  margin-bottom: 5px;
+  background-color: rgba(0, 0, 0, 0.694);
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  grid-template-rows: 100%;
+  height: auto;
+  width: 98%;
+  transition: background-color 0.5s;
+}
+
+.transaction:hover {
+  background-color: rgba(0, 0, 0, 0.827);
+}
+
+.type {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.amount {
+  color: white;
+  text-align: left;
+}
+
+.date {
+  color: white;
+  text-align: left;
+}

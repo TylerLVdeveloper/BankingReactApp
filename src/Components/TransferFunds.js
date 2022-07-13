@@ -218,8 +218,9 @@ class TransferDetails extends React.Component {
           name="From"
           onChange={(e) => this.updateSendingAccntSelection(e)}
           className="transfer_field"
+          defaultValue={""}
         >
-          <option value="" disabled selected>
+          <option value="" selected>
             Select an account
           </option>
           {accountData.map((account) => {
@@ -237,8 +238,9 @@ class TransferDetails extends React.Component {
           name="To"
           onChange={(e) => this.updateReceivingAccntSelection(e)}
           className="transfer_field"
+          defaultValue={""}
         >
-          <option value="" disabled selected>
+          <option value="" selected>
             Select an account
           </option>
           {accountData.map((account) => {
@@ -264,11 +266,13 @@ class TransferDetails extends React.Component {
               placeholder="ex. 20.00"
               value={this.state.transferAmount}
               onChange={this.handleChange}
+              pattern="[0-9]{7}"
             />
             <div id="transfer_btn">
               <input
                 type={this.state.readyToSubmit ? "submit" : "hidden"}
                 value="Transfer"
+                // disabled
               />
             </div>
           </form>

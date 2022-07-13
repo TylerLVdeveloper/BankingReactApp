@@ -38,7 +38,7 @@ class AccountSummary extends React.Component {
               accountType={accnt.accountType}
               balance={accnt.balance}
               key={accnt.key}
-              BtnClick={() => this.props.BtnClick(i)}
+              BtnClick={() => this.props.BtnClick(accnt)}
             />
           );
         })}

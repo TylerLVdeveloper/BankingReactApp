@@ -1,9 +1,9 @@
 import React from "react";
-import "../Stylesheets/SendMoney.css";
+import style from "../Stylesheets/SendMoney.module.css";
 
 class SendMoney extends React.Component {
   render() {
-    return <div className="coming_soon">Coming Soon</div>;
+    return <div className={style.testing}>Coming Soon</div>;
   }
 }
 

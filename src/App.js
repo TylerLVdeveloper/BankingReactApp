@@ -25,7 +25,7 @@ class MainContent extends React.Component {
     if (this.props.activeWindow === "Request a Loan") return <LoanRequests />;
     if (this.props.activeWindow === "Send Money") return <SendMoney />;
     if (this.props.activeWindow === "Account Details")
-      return <AccountDetails />;
+      return <AccountDetails selectedAccount={this.props.selectedAccount} />;
   }
 }
 
@@ -39,8 +39,11 @@ class App extends React.Component {
     this.accntClick = this.accntClick.bind(this);
   }
 
-  accntClick(i) {
-    this.setState({ activeMenuOption: { name: "Account Details", key: 4 } });
+  accntClick(accnt) {
+    this.setState({
+      activeMenuOption: { name: "Account Details", key: 4 },
+      selectedAccount: accnt,
+    });
   }
 
   handleBtnClick(i) {
@@ -68,7 +71,8 @@ class App extends React.Component {
               <MainContent
                 key={this.state.activeMenuOption.key}
                 activeWindow={this.state.activeMenuOption.name}
-                BtnClick={(i) => this.accntClick(i)}
+                selectedAccount={this.state.selectedAccount}
+                BtnClick={(accnt) => this.accntClick(accnt)}
                 returnHome={() => this.returnHome()}
               />
             </div>
