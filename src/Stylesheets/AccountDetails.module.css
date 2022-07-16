@@ -1,20 +1,44 @@
-#account_details_container {
-  background-color: rgba(255, 255, 255, 0.562);
-  border-radius: 0 0 5px 5px;
-  width: 75%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 30px;
-}
-
 #account_heading {
-  background-color: none;
-  width: 100%;
-  height: auto;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.449);
+  width: 75%;
+  top: 50px;
+  left: 12.5%;
+  height: 130px;
   text-align: center;
   font-family: "Heebo", sans-serif;
-  margin-bottom: 50px;
+  padding-top: 15px;
+  padding-bottom: 5px;
+  border-radius: 5px 5px 0 0;
+}
+/* width */
+#account_details_container::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+#account_details_container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+#account_details_container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+#account_details_container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#account_details_container {
+  background-color: rgba(255, 255, 255, 0.378);
+  border-radius: 0 0 5px 5px;
+  width: 75%;
+  height: 400px;
+  overflow-y: scroll;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 200px;
+  scrollbar-width: 5px;
 }
 
 #accountTitle {
@@ -32,7 +56,8 @@
 .transaction {
   padding: 1%;
   margin-bottom: 5px;
-  background-color: rgba(0, 0, 0, 0.694);
+  background-color: rgba(0, 0, 0, 0.778);
+  color: white;
   display: grid;
   grid-template-columns: 10% 80% 10%;
   grid-template-rows: 100%;
@@ -43,19 +68,17 @@
 
 .transaction:hover {
   background-color: rgba(0, 0, 0, 0.827);
+  cursor: pointer;
 }
 
 .type {
-  color: whitesmoke;
   text-align: center;
 }
 
 .amount {
-  color: white;
   text-align: left;
 }
 
 .date {
-  color: white;
   text-align: left;
 }
