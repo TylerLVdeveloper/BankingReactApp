@@ -1,30 +1,33 @@
-.confirmation_modal_overlay {
+.trxn_details_modal_overlay {
   z-index: 2;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.362);
+  background-color: rgba(255, 255, 255, 0.499);
 }
 
-#confirmation_modal {
+#trxn_details_modal {
   position: fixed;
   top: 20%;
-  left: 30%;
-  width: 40%;
+  left: 37.5%;
+  width: 25%;
   height: 60%;
   color: rgb(42, 42, 42);
   border-radius: 20px;
   font-size: 1vw;
   background-color: rgb(255, 255, 255);
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 20% 60% 20%;
 }
 
-#confirmation_modal p {
+#trxn_details_modal p {
   margin-bottom: 10%;
 }
 
-#confirmation_modal button {
+#trxn_details_modal button {
   float: right;
   margin-left: 2%;
   border: none;
@@ -37,12 +40,12 @@
   transition: opacity 0.5s;
 }
 
-#confirmation_modal button:hover {
+#trxn_details_modal button:hover {
   cursor: pointer;
   opacity: 0.7;
 }
 
-#confirmation_modal button:active {
+#trxn_details_modal button:active {
   transform: scale(98%);
 }
 
@@ -55,4 +58,49 @@
 
 .cancel_icon:hover {
   cursor: pointer;
+}
+
+#trxn_type {
+  text-align: center;
+  font-size: 30pt;
+  font-weight: 600;
+  color: rgb(200, 200, 200);
+  padding-top: 2.5%;
+}
+
+#trxn_origin {
+  text-align: center;
+  font-size: 12pt;
+  font-weight: 500;
+  color: rgb(108, 108, 108);
+}
+
+#trxn_amount {
+  text-align: center;
+  font-size: 55pt;
+  font-weight: 700;
+  color: rgb(49, 49, 49);
+  padding-top: 20%;
+}
+
+#trxn_balance {
+  text-align: center;
+  font-size: 12pt;
+  font-weight: 500;
+  color: rgb(39, 39, 39);
+}
+
+#trxn_date {
+  text-align: center;
+  font-size: 12pt;
+  font-weight: 600;
+  color: rgb(49, 49, 49);
+  padding-top: 12%;
+}
+
+#trxn_time {
+  text-align: center;
+  font-size: 12pt;
+  font-weight: 600;
+  color: rgb(49, 49, 49);
 }

@@ -1,9 +1,8 @@
 #account_heading {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.449);
-  width: 75%;
+  width: 70%;
   top: 50px;
-  left: 12.5%;
+  left: 15%;
   height: 130px;
   text-align: center;
   font-family: "Heebo", sans-serif;
@@ -13,16 +12,17 @@
 }
 /* width */
 #account_details_container::-webkit-scrollbar {
+  background-color: rgba(255, 255, 255, 0.378);
   width: 10px;
 }
 /* Track */
 #account_details_container::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background-color: rgba(255, 255, 255, 0.378);
 }
 
 /* Handle */
 #account_details_container::-webkit-scrollbar-thumb {
-  background: #888;
+  background-color: rgba(255, 255, 255, 0.378);
 }
 
 /* Handle on hover */
@@ -32,7 +32,7 @@
 #account_details_container {
   background-color: rgba(255, 255, 255, 0.378);
   border-radius: 0 0 5px 5px;
-  width: 75%;
+  width: 70%;
   height: 400px;
   overflow-y: scroll;
   margin-left: auto;
@@ -42,13 +42,13 @@
 }
 
 #accountTitle {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-weight: 350;
   font-size: 2.8em;
 }
 
 #accountNumber {
-  color: rgb(34, 34, 34);
+  color: rgb(202, 202, 202);
   font-weight: 300;
   font-size: 1.5em;
 }
@@ -67,7 +67,7 @@
 }
 
 .transaction:hover {
-  background-color: rgba(0, 0, 0, 0.827);
+  background-color: rgba(0, 0, 0, 0.873);
   cursor: pointer;
 }
 
