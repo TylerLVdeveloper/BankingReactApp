@@ -341,9 +341,26 @@ class TransferFunds extends React.Component {
   }
 
   processTransaction() {
+    const timestamp = new Date();
+    const month = timestamp.getMonth() + 1;
+    const day = timestamp.getDate();
+    const year = timestamp.getFullYear();
+    const hours = timestamp.getHours();
+    const min = timestamp.getMinutes();
     let transaction = this.state.currentTransaction;
+    console.log(transaction);
     transaction.sendAccnt.balance -= Number(transaction.transferAmount);
     transaction.recAccnt.balance += Number(transaction.transferAmount);
+
+    const transactionDetails = {
+      amount: transaction.transferAmount,
+      type: "Transfer",
+      date: `${month}/${day}/${year}`,
+      origin: `from ${transaction.sendAccnt.accountType} Account`,
+      endingBalance: transaction.recAccnt.balance,
+      time: `${hours}:${min}`,
+    };
+    transaction.recAccnt.transactions.push(transactionDetails);
 
     this.setState({ screenView: "processingAnimation" });
   }

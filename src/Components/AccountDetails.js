@@ -14,6 +14,12 @@ class AccountDetails extends React.Component {
     this.viewTransactionDetails = this.viewTransactionDetails.bind(this);
   }
 
+  closeModal() {
+    this.setState({
+      transactionDetailsModal: { visible: false, transaction: null },
+    });
+  }
+
   viewTransactionDetails(trxn) {
     this.setState({
       transactionDetailsModal: {
@@ -30,6 +36,7 @@ class AccountDetails extends React.Component {
         {this.state.transactionDetailsModal.visible ? (
           <TransactionDetailsModal
             trxn={this.state.transactionDetailsModal.transaction}
+            cancel={() => this.closeModal()}
           />
         ) : null}
         <div id={style.account_heading}>

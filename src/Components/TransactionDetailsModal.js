@@ -9,6 +9,11 @@ class TransactionDetailsModal extends React.Component {
     return (
       <div className="trxn_details_modal_overlay" ref={this.props.nodeRef}>
         <div id="trxn_details_modal">
+          <img
+            src={cancelIcon}
+            className="cancel_icon"
+            onClick={this.props.cancel}
+          />
           <div id="trxn_type">
             {this.props.trxn.type}
             <div id="trxn_origin">{this.props.trxn.origin}</div>
