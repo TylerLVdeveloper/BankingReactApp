@@ -342,25 +342,46 @@ class TransferFunds extends React.Component {
 
   processTransaction() {
     const timestamp = new Date();
-    const month = timestamp.getMonth() + 1;
-    const day = timestamp.getDate();
-    const year = timestamp.getFullYear();
-    const hours = timestamp.getHours();
-    const min = timestamp.getMinutes();
+    let month = timestamp.getMonth() + 1;
+    let day = timestamp.getDate();
+    let year = timestamp.getFullYear();
+    let hours = timestamp.getHours();
+    let min = timestamp.getMinutes();
+    let amOrPm;
+
+    hours >= 12 ? (amOrPm = "PM") : (amOrPm = "AM");
+
+    if (hours > 12) hours = hours - 12;
+    if (month.toString().length === 1) month = "0" + month;
+    if (day.toString().length === 1) day = "0" + day;
+    if (min.toString().length === 1) min = "0" + min;
+
     let transaction = this.state.currentTransaction;
-    console.log(transaction);
     transaction.sendAccnt.balance -= Number(transaction.transferAmount);
     transaction.recAccnt.balance += Number(transaction.transferAmount);
 
-    const transactionDetails = {
+    const transactionDetailsRecAccnt = {
       amount: transaction.transferAmount,
       type: "Transfer",
       date: `${month}/${day}/${year}`,
       origin: `from ${transaction.sendAccnt.accountType} Account`,
       endingBalance: transaction.recAccnt.balance,
-      time: `${hours}:${min}`,
+      time: `${hours}:${min} ${amOrPm}`,
+      timestamp: timestamp,
     };
-    transaction.recAccnt.transactions.push(transactionDetails);
+
+    const transactionDetailsSendAccnt = {
+      amount: transaction.transferAmount,
+      type: "Transfer",
+      date: `${month}/${day}/${year}`,
+      origin: `to ${transaction.recAccnt.accountType} Account`,
+      endingBalance: transaction.sendAccnt.balance,
+      time: `${hours}:${min} ${amOrPm}`,
+      timestamp: timestamp,
+    };
+
+    transaction.recAccnt.transactions.push(transactionDetailsRecAccnt);
+    transaction.sendAccnt.transactions.push(transactionDetailsSendAccnt);
 
     this.setState({ screenView: "processingAnimation" });
   }
