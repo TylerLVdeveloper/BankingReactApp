@@ -2,19 +2,17 @@ import "./App.css";
 import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 
-// Data Structures
-import navigationOptions from "./NavigationData.js";
-// import accountData from "./AccountData";
+import navigationOptions from "NavigationData.js";
 
 // Top Navigation Component
-import TopNavigation from "./Components/TopNavigation";
+import TopNavigation from "Components/TopNavigation";
 
 //Main Content Components
-import AccountSummary from "./Components/AccountSummary";
-import LoanRequests from "./Components/LoanRequest";
-import SendMoney from "./Components/SendMoney";
-import TransferFunds from "./Components/TransferFunds";
-import AccountDetails from "./Components/AccountDetails";
+import AccountSummary from "Components/AccountSummary";
+import LoanRequests from "Components/LoanRequest";
+import SendMoney from "Components/SendMoney";
+import TransferFunds from "Components/TransferFunds";
+import AccountDetails from "Components/AccountDetails";
 
 class MainContent extends React.Component {
   render() {

@@ -1,5 +1,5 @@
 import React from "react";
-import "../Stylesheets/TopNavigation.css";
+import "Stylesheets/TopNavigation.css";
 
 import navigationOptions from "../NavigationData.js";
 

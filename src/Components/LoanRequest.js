@@ -1,5 +1,5 @@
 import React from "react";
-import "../Stylesheets/LoanRequests.css";
+import "Stylesheets/LoanRequests.css";
 
 class LoanRequests extends React.Component {
   render() {

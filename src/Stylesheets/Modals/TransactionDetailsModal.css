@@ -60,6 +60,10 @@
   cursor: pointer;
 }
 
+.cancel_icon:active {
+  transform: scale(90%);
+}
+
 #trxn_type {
   text-align: center;
   font-size: 30pt;

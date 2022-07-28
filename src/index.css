@@ -49,3 +49,18 @@ code {
   opacity: 0;
   transition: all 0.5s;
 }
+
+.result_modal_transition-enter {
+  transform: translateY(-100vw);
+}
+.result_modal_transition-enter-active {
+  transform: translateY(0vw);
+  transition: transform 500ms;
+}
+.result_modal_transition-exit {
+  transform: translateY(0vw);
+}
+.result_modal_transition-exit-active {
+  transform: translateY(-100vw);
+  transition: transform 500ms;
+}

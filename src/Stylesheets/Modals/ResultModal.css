@@ -1,0 +1,23 @@
+#result_modal {
+  position: fixed;
+  top: 0%;
+  z-index: 2;
+  left: 34%;
+  width: 30%;
+  height: auto;
+  border-radius: 0 0 3px 3px;
+  padding: 1%;
+  font-size: 1vw;
+  text-align: center;
+}
+
+/* .success {
+  background-color: rgba(21, 250, 0, 0.652);
+  color: rgb(44, 44, 44);
+} */
+
+.fail {
+  background-color: rgba(255, 0, 0, 0.879);
+  color: white;
+  font-weight: 800;
+}

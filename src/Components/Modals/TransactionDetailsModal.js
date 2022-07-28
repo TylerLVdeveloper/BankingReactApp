@@ -1,8 +1,8 @@
 import React from "react";
-import "../Stylesheets/TransactionDetailsModal.css";
+import "Stylesheets/Modals/TransactionDetailsModal.css";
 
 ////////Images
-import cancelIcon from "../images/cancelIcon.png";
+import cancelIcon from "images/cancelIcon.png";
 
 class TransactionDetailsModal extends React.Component {
   render() {

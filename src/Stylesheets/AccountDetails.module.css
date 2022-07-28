@@ -1,14 +1,13 @@
 #account_heading {
   position: absolute;
   width: 70%;
-  top: 50px;
+  top: 10px;
   left: 15%;
   height: 130px;
   text-align: center;
   font-family: "Heebo", sans-serif;
   padding-top: 15px;
   padding-bottom: 5px;
-  border-radius: 5px 5px 0 0;
 }
 /* width */
 #account_details_container::-webkit-scrollbar {
@@ -53,11 +52,17 @@
   font-size: 1.5em;
 }
 
+#accountBalance {
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  font-size: 1.2em;
+  margin-top: 30px;
+}
+
 .transaction {
   padding: 1%;
   margin-bottom: 5px;
   background-color: rgba(0, 0, 0, 0.778);
-  color: white;
   display: grid;
   grid-template-columns: 10% 80% 10%;
   grid-template-rows: 100%;
@@ -72,13 +77,21 @@
 }
 
 .type {
+  color: white;
   text-align: center;
 }
 
-.amount {
+.removed {
   text-align: left;
+  color: red;
+}
+
+.added {
+  text-align: left;
+  color: rgb(43, 255, 0);
 }
 
 .date {
+  color: white;
   text-align: left;
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import "../Stylesheets/AccountSummary.css";
-import accountData from "../AccountData.js";
+import "Stylesheets/AccountSummary.css";
+import accountData from "AccountData.js";
 
 class UserGreeting extends React.Component {
   render() {
@@ -36,7 +36,7 @@ class AccountSummary extends React.Component {
           return (
             <Account
               accountType={accnt.accountType}
-              balance={accnt.balance}
+              balance={accnt.balance.toFixed(2)}
               key={accnt.key}
               BtnClick={() => this.props.BtnClick(accnt)}
             />

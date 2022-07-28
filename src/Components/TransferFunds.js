@@ -1,9 +1,11 @@
 import React from "react";
-import "../Stylesheets/TransferFunds.css";
-import accountData from "../AccountData";
-import dollarSign from "../images/dollarSign.png";
-import cashIcon from "../images/cashIcon.png";
-import accntIcon from "../images/accountSummaryIcon.png";
+import "Stylesheets/TransferFunds.css";
+import accountData from "AccountData.js";
+import dollarSign from "images/dollarSign.png";
+import cashIcon from "images/cashIcon.png";
+import accntIcon from "images/accountSummaryIcon.png";
+
+import ResultModal from "Components/Modals/ResultModal.js"; // Displays result message to user after completed action
 
 import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
 
@@ -65,7 +67,7 @@ class ProcessingAnimation extends React.Component {
   render() {
     const transaction = this.props.transactionDetails;
     return (
-      <div>
+      <div className="transfer_funds_overlay">
         <div id="animation_title">Transferring</div>
         <div id="animation_container">
           <div id="fromAccnt">
@@ -136,6 +138,10 @@ class TransferDetails extends React.Component {
       receivingAccnt: "",
       transferAmount: "",
       readyToSubmit: false,
+      resultModal: {
+        show: false,
+        resultType: null,
+      },
     };
     this.updateReceivingAccntSelection =
       this.updateReceivingAccntSelection.bind(this);
@@ -145,6 +151,28 @@ class TransferDetails extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.checkFormCompletion = this.checkFormCompletion.bind(this);
+
+    this.resultModalRef = React.createRef(null);
+  }
+
+  showResultModal(resultType) {
+    this.setState({
+      resultModal: {
+        show: true,
+        resultType: resultType,
+      },
+    });
+
+    const hideModal = () => {
+      this.setState({
+        resultModal: {
+          show: false,
+          resultType: null,
+        },
+      });
+    };
+    // Hides result modal 3 seconds after appearing
+    setTimeout(hideModal, 3000);
   }
 
   checkFormCompletion() {
@@ -178,6 +206,15 @@ class TransferDetails extends React.Component {
   }
 
   handleChange(e) {
+    //Prevents user from entering more than 2 digits after the decimal
+    if (e.target.value.includes(".")) {
+      const decimalCheck = e.target.value.toString().split(".");
+      if (decimalCheck[1].length > 2) {
+        const updatedValue = Number(e.target.value).toFixed(2);
+        e.target.value = updatedValue;
+      }
+    }
+
     this.setState({ transferAmount: e.target.value }, () =>
       this.checkFormCompletion()
     );
@@ -199,19 +236,42 @@ class TransferDetails extends React.Component {
         return null;
       }
     });
-    let transferAmount = this.state.transferAmount;
-    let transactionDetails = {
-      sendAccnt,
-      recAccnt,
-      transferAmount,
-    };
+    let transferAmount = parseFloat(this.state.transferAmount).toFixed(2);
 
-    this.props.startTransaction(transactionDetails);
+    if (transferAmount > sendAccnt.balance) {
+      this.showResultModal("fail"); // Displays result modal
+    } else {
+      let transactionDetails = {
+        sendAccnt,
+        recAccnt,
+        transferAmount,
+      };
+
+      this.props.startTransaction(transactionDetails);
+    }
   }
 
   render() {
     return (
       <div id="transfer_container">
+        <TransitionGroup>
+          {this.state.resultModal.show ? (
+            <CSSTransition
+              nodeRef={this.resultModalRef}
+              in={this.state.resultModal.show}
+              timeout={500}
+              classNames="result_modal_transition"
+            >
+              <ResultModal
+                nodeRef={this.resultModalRef}
+                phoneNumber={this.state.resultModal.phoneNumber}
+                action={this.state.resultModal.action}
+                resultType={this.state.resultModal.resultType}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+
         <h3>From</h3>
         <select
           id="From"
@@ -267,6 +327,8 @@ class TransferDetails extends React.Component {
               value={this.state.transferAmount}
               onChange={this.handleChange}
               pattern="[0-9]{7}"
+              step=".01"
+              min=".01"
             />
             <div id="transfer_btn">
               <input
@@ -363,9 +425,10 @@ class TransferFunds extends React.Component {
     const transactionDetailsRecAccnt = {
       amount: transaction.transferAmount,
       type: "Transfer",
+      action: "Add",
       date: `${month}/${day}/${year}`,
       origin: `from ${transaction.sendAccnt.accountType} Account`,
-      endingBalance: transaction.recAccnt.balance,
+      endingBalance: transaction.recAccnt.balance.toFixed(2),
       time: `${hours}:${min} ${amOrPm}`,
       timestamp: timestamp,
     };
@@ -373,9 +436,10 @@ class TransferFunds extends React.Component {
     const transactionDetailsSendAccnt = {
       amount: transaction.transferAmount,
       type: "Transfer",
+      action: "Subtract",
       date: `${month}/${day}/${year}`,
       origin: `to ${transaction.recAccnt.accountType} Account`,
-      endingBalance: transaction.sendAccnt.balance,
+      endingBalance: transaction.sendAccnt.balance.toFixed(2),
       time: `${hours}:${min} ${amOrPm}`,
       timestamp: timestamp,
     };

@@ -1,6 +1,10 @@
 import React from "react";
-import style from "../Stylesheets/AccountDetails.module.css";
-import TransactionDetailsModal from "./TransactionDetailsModal.js";
+import style from "Stylesheets/AccountDetails.module.css";
+import "App.css";
+import TransactionDetailsModal from "Components/Modals/TransactionDetailsModal.js";
+
+// Package used for CSS transitions as components enter or leave the DOM
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 class AccountDetails extends React.Component {
   constructor(props) {
@@ -12,6 +16,8 @@ class AccountDetails extends React.Component {
       },
     };
     this.viewTransactionDetails = this.viewTransactionDetails.bind(this);
+
+    this.resultModalRef = React.createRef(null);
   }
 
   closeModal() {
@@ -33,15 +39,29 @@ class AccountDetails extends React.Component {
     const account = this.props.selectedAccount;
     return (
       <div id={style.account_details_container}>
-        {this.state.transactionDetailsModal.visible ? (
-          <TransactionDetailsModal
-            trxn={this.state.transactionDetailsModal.transaction}
-            cancel={() => this.closeModal()}
-          />
-        ) : null}
+        <TransitionGroup>
+          {this.state.transactionDetailsModal.visible ? (
+            <CSSTransition
+              nodeRef={this.resultModalRef}
+              in={this.state.transactionDetailsModal.visible}
+              timeout={500}
+              classNames="result_modal_transition"
+            >
+              <TransactionDetailsModal
+                trxn={this.state.transactionDetailsModal.transaction}
+                cancel={() => this.closeModal()}
+                nodeRef={this.resultModalRef}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+
         <div id={style.account_heading}>
           <div id={style.accountTitle}>{account.accountType}</div>
           <div id={style.accountNumber}>{account.accountNumber}</div>
+          <div id={style.accountBalance}>
+            Available Balance: ${account.balance.toFixed(2)}
+          </div>
         </div>
 
         {account.transactions.map((transaction, i, _) => {
@@ -52,7 +72,11 @@ class AccountDetails extends React.Component {
             >
               <div className={style.date}>{transaction.date}</div>
               <div className={style.type}>{transaction.type}</div>
-              <div className={style.amount}>${transaction.amount}</div>
+              {transaction.action === "Add" ? (
+                <div className={style.added}>+ ${transaction.amount}</div>
+              ) : (
+                <div className={style.removed}>- ${transaction.amount}</div>
+              )}
             </div>
           );
         })}
