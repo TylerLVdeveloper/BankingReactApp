@@ -2,133 +2,13 @@ import React from "react";
 import "Stylesheets/TransferFunds.css";
 import accountData from "AccountData.js";
 import dollarSign from "images/dollarSign.png";
-import cashIcon from "images/cashIcon.png";
-import accntIcon from "images/accountSummaryIcon.png";
 
+import ProcessingAnimation from "Components/CommonScreens/ProcessingAnimation";
 import ResultModal from "Components/Modals/ResultModal.js"; // Displays result message to user after completed action
+import TransactionComplete from "Components/CommonScreens/TransactionComplete";
+import Confirmation from "Components/CommonScreens/Confirmation.js";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group"; // ES6
-
-class TransferComplete extends React.Component {
-  render() {
-    return (
-      <div className="transfer_message_container">
-        <p id="transfer_complete_message">Transfer Complete!</p>
-
-        <div
-          className="transfer_complete_btn"
-          id="return_home_btn"
-          onClick={() => this.props.returnHome()}
-        >
-          View Account Summary
-        </div>
-        <div
-          className="transfer_complete_btn"
-          id="new_transfer_btn"
-          onClick={() => this.props.changeView("transferDetails")}
-        >
-          Start a New Transfer
-        </div>
-      </div>
-    );
-  }
-}
-
-class ProcessingAnimation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timer: 7,
-    };
-    this.tick = this.tick.bind(this);
-  }
-
-  tick() {
-    this.setState({
-      timer: this.state.timer - 1,
-    });
-  }
-
-  componentDidMount() {
-    this.countdown = setInterval(() => {
-      if (this.state.timer > 1) {
-        this.tick();
-      } else {
-        clearInterval(this.countdown);
-        this.props.transactionComplete();
-      }
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.countdown);
-  }
-
-  render() {
-    const transaction = this.props.transactionDetails;
-    return (
-      <div className="transfer_funds_overlay">
-        <div id="animation_title">Transferring</div>
-        <div id="animation_container">
-          <div id="fromAccnt">
-            <img src={accntIcon} alt="" />
-            {transaction.sendAccnt.accountType}{" "}
-            {transaction.sendAccnt.accountNumber}
-          </div>
-          <div id="cash_icon">
-            <img src={cashIcon} alt="" />
-          </div>
-          <div id="cash_icon2">
-            <img src={cashIcon} alt="" />
-          </div>
-          <div id="cash_icon3">
-            <img src={cashIcon} alt="" />
-          </div>
-          <div id="cash_icon4">
-            <img src={cashIcon} alt="" />
-          </div>
-          <div id="cash_icon5">
-            <img src={cashIcon} alt="" />
-          </div>
-          <div id="toAccnt">
-            <img src={accntIcon} alt="" />
-            {transaction.recAccnt.accountType}{" "}
-            {transaction.recAccnt.accountNumber}
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
-
-class ConfirmationScreen extends React.Component {
-  render() {
-    const transaction = this.props.transactionDetails;
-    const message = `Are you sure you want to transfer $${transaction.transferAmount} from
-    your ${transaction.sendAccnt.accountType} Account (${transaction.sendAccnt.accountNumber}) to your ${transaction.recAccnt.accountType} Account (${transaction.recAccnt.accountNumber})? `;
-
-    return (
-      <div className="transfer_message_container">
-        <p id="confirmation_message">{message}</p>
-
-        <div
-          className="transfer_funds_btn"
-          id="transfer_funds_confirm_btn"
-          onClick={() => this.props.confirm()}
-        >
-          Yes, transfer
-        </div>
-        <div
-          className="transfer_funds_btn"
-          id="transfer_funds_cancel_btn"
-          onClick={() => this.props.cancel()}
-        >
-          No, cancel
-        </div>
-      </div>
-    );
-  }
-}
 
 class TransferDetails extends React.Component {
   constructor(props) {
@@ -136,7 +16,7 @@ class TransferDetails extends React.Component {
     this.state = {
       sendingAccnt: "",
       receivingAccnt: "",
-      transferAmount: "",
+      amount: "",
       readyToSubmit: false,
       resultModal: {
         show: false,
@@ -179,7 +59,7 @@ class TransferDetails extends React.Component {
     if (
       this.state.sendingAccnt !== "" &&
       this.state.receivingAccnt !== "" &&
-      this.state.transferAmount !== ""
+      this.state.amount !== ""
     ) {
       this.setState({ readyToSubmit: true });
     } else {
@@ -215,9 +95,7 @@ class TransferDetails extends React.Component {
       }
     }
 
-    this.setState({ transferAmount: e.target.value }, () =>
-      this.checkFormCompletion()
-    );
+    this.setState({ amount: e.target.value }, () => this.checkFormCompletion());
   }
 
   handleSubmit(e) {
@@ -236,15 +114,15 @@ class TransferDetails extends React.Component {
         return null;
       }
     });
-    let transferAmount = parseFloat(this.state.transferAmount).toFixed(2);
+    let amount = parseFloat(this.state.amount).toFixed(2);
 
-    if (transferAmount > sendAccnt.balance) {
+    if (amount > sendAccnt.balance) {
       this.showResultModal("fail"); // Displays result modal
     } else {
       let transactionDetails = {
         sendAccnt,
         recAccnt,
-        transferAmount,
+        amount,
       };
 
       this.props.startTransaction(transactionDetails);
@@ -264,7 +142,6 @@ class TransferDetails extends React.Component {
             >
               <ResultModal
                 nodeRef={this.resultModalRef}
-                phoneNumber={this.state.resultModal.phoneNumber}
                 action={this.state.resultModal.action}
                 resultType={this.state.resultModal.resultType}
               />
@@ -324,7 +201,7 @@ class TransferDetails extends React.Component {
               id="Amount"
               className="transfer_field"
               placeholder="ex. 20.00"
-              value={this.state.transferAmount}
+              value={this.state.amount}
               onChange={this.handleChange}
               pattern="[0-9]{7}"
               step=".01"
@@ -357,10 +234,11 @@ class TransferFundsContainer extends React.Component {
 
     if (this.props.screenView === "confirmationScreen")
       return (
-        <ConfirmationScreen
-          confirm={() => this.props.confirm()}
+        <Confirmation
+          transactionType="TransferFunds"
+          trxn={this.props.currentTransaction}
+          confirmed={() => this.props.confirm()}
           cancel={() => this.props.cancel()}
-          transactionDetails={this.props.currentTransaction}
         />
       );
 
@@ -368,13 +246,15 @@ class TransferFundsContainer extends React.Component {
       return (
         <ProcessingAnimation
           transactionComplete={() => this.props.transactionComplete()}
+          transactionType="TransferFunds"
           transactionDetails={this.props.currentTransaction}
         />
       );
 
     if (this.props.screenView === "transferComplete")
       return (
-        <TransferComplete
+        <TransactionComplete
+          transactionType="TransferFunds"
           changeView={(viewChoice) => this.props.changeView(viewChoice)}
           returnHome={() => this.props.returnHome()}
         />
@@ -419,11 +299,11 @@ class TransferFunds extends React.Component {
     if (min.toString().length === 1) min = "0" + min;
 
     let transaction = this.state.currentTransaction;
-    transaction.sendAccnt.balance -= Number(transaction.transferAmount);
-    transaction.recAccnt.balance += Number(transaction.transferAmount);
+    transaction.sendAccnt.balance -= Number(transaction.amount);
+    transaction.recAccnt.balance += Number(transaction.amount);
 
     const transactionDetailsRecAccnt = {
-      amount: transaction.transferAmount,
+      amount: transaction.amount,
       type: "Transfer",
       action: "Add",
       date: `${month}/${day}/${year}`,
@@ -434,7 +314,7 @@ class TransferFunds extends React.Component {
     };
 
     const transactionDetailsSendAccnt = {
-      amount: transaction.transferAmount,
+      amount: transaction.amount,
       type: "Transfer",
       action: "Subtract",
       date: `${month}/${day}/${year}`,

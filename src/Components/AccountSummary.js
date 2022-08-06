@@ -16,12 +16,8 @@ class Account extends React.Component {
   render() {
     return (
       <div className="account" onClick={() => this.props.BtnClick()}>
-        <div className="accnt_type">
-          <p>{this.props.accountType}</p>
-        </div>
-        <div className="balance">
-          <p>Available Balance: ${this.props.balance}</p>
-        </div>
+        <div className="accnt_type">{this.props.accountType}</div>
+        <div className="balance">Available Balance: ${this.props.balance}</div>
       </div>
     );
   }

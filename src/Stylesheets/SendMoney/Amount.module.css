@@ -1,0 +1,68 @@
+#amount_container {
+  margin-top: 50px;
+  margin-left: 20%;
+  height: 600px;
+  width: 60%;
+}
+
+.page_title {
+  height: auto;
+  font-size: 3em;
+  font-weight: 200;
+  text-align: center;
+  color: white;
+}
+
+#form_container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#form_container ::placeholder {
+  color: white;
+  opacity: 0.55;
+}
+
+#form_container input,
+select {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgb(84, 161, 250, 0.5);
+  color: white;
+  border: none;
+  border-radius: 2.5px;
+  margin-bottom: 50px;
+  font-size: 1.2em;
+  width: auto;
+  height: auto;
+}
+
+#amount input {
+  margin-top: 15px;
+  margin-left: 25%;
+  width: 46%;
+  padding: 2%;
+}
+
+#account select {
+  margin-top: 15px;
+  margin-left: 25%;
+  width: 50%;
+  padding: 2%;
+}
+
+#review_btn input {
+  margin-top: 15px;
+  margin-left: 39%;
+  width: 20%;
+  padding: 2%;
+  text-align: center;
+  background-color: rgba(29, 226, 3, 0.425);
+  transition: background-color 0.7s;
+}
+
+#review_btn input:hover {
+  background-color: rgba(29, 226, 3, 0.8);
+  cursor: pointer;
+}

@@ -10,18 +10,19 @@ import TopNavigation from "Components/TopNavigation";
 //Main Content Components
 import AccountSummary from "Components/AccountSummary";
 import LoanRequests from "Components/LoanRequest";
-import SendMoney from "Components/SendMoney";
+import SendMoney from "Components/SendMoney/SendMoney";
 import TransferFunds from "Components/TransferFunds";
 import AccountDetails from "Components/AccountDetails";
 
 class MainContent extends React.Component {
   render() {
-    if (this.props.activeWindow === "Account Summary")
+    if (this.props.activeWindow === "Accounts")
       return <AccountSummary BtnClick={(i) => this.props.BtnClick(i)} />;
     if (this.props.activeWindow === "Transfer Funds")
       return <TransferFunds returnHome={() => this.props.returnHome()} />;
     if (this.props.activeWindow === "Request a Loan") return <LoanRequests />;
-    if (this.props.activeWindow === "Send Money") return <SendMoney />;
+    if (this.props.activeWindow === "Send Money")
+      return <SendMoney returnHome={() => this.props.returnHome()} />;
     if (this.props.activeWindow === "Account Details")
       return <AccountDetails selectedAccount={this.props.selectedAccount} />;
   }

@@ -1,14 +1,12 @@
 #account_summary_container {
   font-family: "Heebo", sans-serif;
-  float: left;
-  width: 100vw;
+  width: 100%;
   height: auto;
   padding-top: 50px;
 }
 
 #user_greeting_container {
-  float: left;
-  width: 100vw;
+  width: 100%;
   height: auto;
   color: white;
   text-align: center;
@@ -24,34 +22,30 @@
 .account {
   margin-left: auto;
   margin-right: auto;
-  width: 30vw;
+  width: 30%;
   height: auto;
-  background-color: rgba(29, 226, 3, 0.5);
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.744);
   margin-bottom: 25px;
   border-radius: 5px;
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 40% 60%;
-  transition: background-color 0.7s;
+  transition: all 0.7s;
+  text-align: center;
 }
 
 .account:hover {
   background-color: rgba(29, 226, 3, 0.8);
   cursor: pointer;
+  transform: scale(110%);
 }
 
 .accnt_type {
   color: rgb(75, 75, 75);
-  font-size: 2.5em;
-  text-align: center;
-  line-height: 15px;
-  font-weight: 500;
+  font-size: 2em;
+  font-weight: 400;
 }
 
 .balance {
-  font-size: 1.5em;
+  font-size: 1.2em;
   color: white;
-  text-align: center;
-  line-height: 15px;
   font-weight: 600;
 }

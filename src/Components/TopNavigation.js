@@ -10,9 +10,10 @@ class Button extends React.Component {
         className={this.props.buttonStyle}
         onClick={() => this.props.BtnClick()}
       >
-        {this.props.buttonName}
-        <br />
         <img src={this.props.icon} alt="" />
+        <br />
+
+        {this.props.buttonName}
       </div>
     );
   }

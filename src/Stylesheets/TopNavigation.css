@@ -2,9 +2,9 @@
   position: fixed;
   z-index: 1;
   top: 0px;
-  width: 100vw;
-  height: 100px;
-  background-color: rgb(56, 56, 56);
+  width: 100%;
+  height: auto;
+  background-color: rgba(56, 56, 56, 0.705);
   color: white;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
@@ -12,9 +12,10 @@
 }
 
 .btn {
-  font-size: 1em;
+  font-size: 0.9em;
   text-align: center;
-  padding: 5%;
+  line-height: 15px;
+  padding-bottom: 3.5%;
   transition: all 0.7s;
   color: white;
 }
@@ -25,7 +26,7 @@
 }
 
 .active_btn {
-  background-color: rgb(32, 32, 32);
+  background-color: rgba(32, 32, 32, 0.639);
 }
 
 .inactive_btn {

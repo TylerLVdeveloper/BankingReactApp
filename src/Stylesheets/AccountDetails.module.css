@@ -36,7 +36,7 @@
   overflow-y: scroll;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 200px;
+  margin-top: 220px;
   scrollbar-width: 5px;
 }
 
@@ -52,11 +52,26 @@
   font-size: 1.5em;
 }
 
-#accountBalance {
-  color: rgb(255, 255, 255);
-  font-weight: 500;
-  font-size: 1.2em;
+#account_summary_details {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
   margin-top: 30px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.614);
+  border-radius: 5px;
+}
+
+.summary_label {
+  color: rgb(14, 14, 14);
+  font-weight: 400;
+  font-size: 1.1em;
+}
+
+.summary_value {
+  color: rgb(14, 14, 14);
+  font-weight: 600;
+  font-size: 1.2em;
 }
 
 .transaction {
@@ -68,12 +83,13 @@
   grid-template-rows: 100%;
   height: auto;
   width: 98%;
-  transition: background-color 0.5s;
+  transition: all 0.2s;
 }
 
 .transaction:hover {
   background-color: rgba(0, 0, 0, 0.873);
   cursor: pointer;
+  font-weight: 600;
 }
 
 .type {

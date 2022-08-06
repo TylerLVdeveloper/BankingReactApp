@@ -59,8 +59,15 @@ class AccountDetails extends React.Component {
         <div id={style.account_heading}>
           <div id={style.accountTitle}>{account.accountType}</div>
           <div id={style.accountNumber}>{account.accountNumber}</div>
-          <div id={style.accountBalance}>
-            Available Balance: ${account.balance.toFixed(2)}
+          <div id={style.account_summary_details}>
+            <div className={style.summary_label}>Available Balance</div>
+            <div className={style.summary_label}>Total Transactions</div>
+            <div className={style.summary_value}>
+              ${account.balance.toFixed(2)}
+            </div>
+            <div className={style.summary_value}>
+              {account.transactions.length}
+            </div>
           </div>
         </div>
 
