@@ -131,7 +131,7 @@ class TransferDetails extends React.Component {
 
   render() {
     return (
-      <div id="transfer_container">
+      <div id="transfer_container" ref={this.props.nodeRef}>
         <TransitionGroup>
           {this.state.resultModal.show ? (
             <CSSTransition
@@ -157,9 +157,7 @@ class TransferDetails extends React.Component {
           className="transfer_field"
           defaultValue={""}
         >
-          <option value="" selected>
-            Select an account
-          </option>
+          <option value="">Select an account</option>
           {accountData.map((account) => {
             return (
               <option value={account.key} key={account.key}>
@@ -177,9 +175,7 @@ class TransferDetails extends React.Component {
           className="transfer_field"
           defaultValue={""}
         >
-          <option value="" selected>
-            Select an account
-          </option>
+          <option value="">Select an account</option>
           {accountData.map((account) => {
             if (account.key !== this.state.sendingAccnt) {
               return (
@@ -211,7 +207,6 @@ class TransferDetails extends React.Component {
               <input
                 type={this.state.readyToSubmit ? "submit" : "hidden"}
                 value="Transfer"
-                // disabled
               />
             </div>
           </form>

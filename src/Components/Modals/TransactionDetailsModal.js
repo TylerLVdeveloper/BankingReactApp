@@ -13,6 +13,7 @@ class TransactionDetailsModal extends React.Component {
             src={cancelIcon}
             className="cancel_icon"
             onClick={this.props.cancel}
+            alt=""
           />
           <div id="trxn_type">
             {this.props.trxn.type}

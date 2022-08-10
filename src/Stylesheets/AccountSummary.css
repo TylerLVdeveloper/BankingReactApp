@@ -14,7 +14,7 @@
 }
 
 #user_greeting_container h1 {
-  font-weight: 300;
+  font-weight: 400;
   font-family: "Heebo", sans-serif;
   font-size: 2.5em;
 }
@@ -25,9 +25,9 @@
   width: 30%;
   height: auto;
   padding: 5px;
-  background-color: rgba(255, 255, 255, 0.744);
+  background-color: rgba(255, 255, 255, 0.315);
   margin-bottom: 25px;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: all 0.7s;
   text-align: center;
 }
@@ -39,9 +39,9 @@
 }
 
 .accnt_type {
-  color: rgb(75, 75, 75);
+  color: rgb(214, 214, 214);
   font-size: 2em;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .balance {

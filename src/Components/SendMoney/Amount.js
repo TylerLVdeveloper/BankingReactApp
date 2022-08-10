@@ -94,18 +94,13 @@ class Amount extends React.Component {
     if (transferAmount > sendAccnt.balance) {
       this.showResultModal("fail"); // Displays result modal
     } else {
-      let transactionDetails = {
-        sendAccnt,
-        transferAmount,
-      };
-
       this.props.selectedDetails(transferAmount, sendAccnt);
     }
   }
 
   render() {
     return (
-      <div id={style.amount_container}>
+      <div id={style.amount_container} ref={this.props.nodeRef}>
         <TransitionGroup>
           {this.state.resultModal.show ? (
             <CSSTransition
@@ -142,9 +137,7 @@ class Amount extends React.Component {
                 onChange={(e) => this.updateSendingAccntSelection(e)}
                 defaultValue={""}
               >
-                <option value="" selected>
-                  Select an account
-                </option>
+                <option value="">Select an account</option>
                 {accountData.map((account) => {
                   return (
                     <option value={account.key} key={account.key}>

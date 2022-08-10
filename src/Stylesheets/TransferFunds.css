@@ -19,7 +19,7 @@
 
 #transfer_container h3 {
   font-size: 2em;
-  font-weight: 200;
+  font-weight: 500;
   text-align: center;
   color: white;
 }
@@ -45,6 +45,11 @@ select {
   width: auto;
 }
 
+#transfer_container input:hover,
+select:hover {
+  cursor: pointer;
+}
+
 #amount_field {
   margin-top: 10px;
   margin-left: auto;
@@ -57,9 +62,9 @@ select {
 }
 
 #transfer_btn input {
-  background-color: rgba(29, 226, 3, 0.425);
+  background-color: rgba(29, 226, 3, 0.678);
   width: 50%;
-  transition: background-color 0.7s;
+  transition: all 0.5s;
   margin-top: 10px;
   margin-left: 25%;
   margin-right: 25%;
@@ -70,9 +75,13 @@ select {
   cursor: pointer;
 }
 
+#transfer_btn input:active {
+  transform: scale(90%);
+}
+
 .transfer_message_container {
   position: absolute;
-  top: 50px;
+  top: 10px;
   width: 40%;
   height: 300px;
   margin-left: 30%;
@@ -120,6 +129,10 @@ select {
   cursor: pointer;
 }
 
+.transfer_funds_btn:active {
+  transform: scale(95%);
+}
+
 .transfer_complete_btn {
   width: 50%;
   height: auto;
@@ -139,5 +152,5 @@ select {
 
 #transfer_complete_message {
   font-size: 3em;
-  font-weight: 200;
+  font-weight: 500;
 }

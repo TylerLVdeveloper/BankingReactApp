@@ -37,7 +37,7 @@ class ProcessingAnimation extends React.Component {
   render() {
     const transaction = this.props.transactionDetails;
     return (
-      <div className={style.transfer_funds_overlay}>
+      <div className={style.transfer_funds_overlay} ref={this.props.nodeRef}>
         <div id={style.animation_title}>
           {this.props.transactionType === "SendMoney" ? "Sending Money" : null}
           {this.props.transactionType === "TransferFunds"

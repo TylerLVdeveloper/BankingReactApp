@@ -76,6 +76,7 @@ class AccountDetails extends React.Component {
             <div
               className={style.transaction}
               onClick={() => this.viewTransactionDetails(transaction)}
+              key={i}
             >
               <div className={style.date}>{transaction.date}</div>
               <div className={style.type}>{transaction.type}</div>

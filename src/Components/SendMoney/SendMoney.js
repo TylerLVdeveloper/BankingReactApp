@@ -1,4 +1,8 @@
 import React from "react";
+// Package used for CSS transitions as components enter or leave the DOM
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+
+import "Stylesheets/TransitionStyles.css";
 
 import Recipients from "./Recipients.js";
 import Amount from "./Amount.js";
@@ -10,7 +14,11 @@ class SendMoney extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeScreen: "Select Recipient",
+      selectedRecipient: true,
+      transactionComplete: false,
+      processingAnimation: false,
+      enterAmount: false,
+      confirmation: false,
       recipient: null,
       trnxDetails: {
         amount: null,
@@ -19,11 +27,19 @@ class SendMoney extends React.Component {
     };
 
     this.updateRecipient = this.updateRecipient.bind(this);
+
+    this.TransactionCompleteRef = React.createRef(null);
+    this.selectRecipientRef = React.createRef(null);
+    this.enterAmountRef = React.createRef(null);
   }
 
   resetScreen() {
     this.setState({
-      activeScreen: "Select Recipient",
+      selectedRecipient: true,
+      transactionComplete: false,
+      processingAnimation: false,
+      enterAmount: false,
+      confirmation: false,
       recipient: null,
       trnxDetails: {
         amount: null,
@@ -33,11 +49,11 @@ class SendMoney extends React.Component {
   }
 
   transactionComplete() {
-    this.setState({ activeScreen: "Transaction Complete" });
+    this.setState({ processingAnimation: false, transactionComplete: true });
   }
 
   processTransaction() {
-    this.setState({ activeScreen: "Processing Animation" });
+    this.setState({ confirmation: false, processingAnimation: true });
 
     const timestamp = new Date();
     let month = timestamp.getMonth() + 1;
@@ -75,68 +91,115 @@ class SendMoney extends React.Component {
 
   updateRecipient(rec) {
     this.setState({ recipient: rec });
-    this.setState({ activeScreen: "Enter Amount" });
+    this.setState({ selectedRecipient: false, enterAmount: true });
   }
 
   updateDetails(amount, account) {
     this.setState({
       trnxDetails: { amount: amount, sendAccnt: account },
     });
-    this.setState({ activeScreen: "Confirmation" });
+    this.setState({ enterAmount: false, confirmation: true });
   }
 
   render() {
-    // STEP 1
-    if (this.state.activeScreen === "Select Recipient")
-      return (
-        <Recipients
-          selectedRecipient={(recipient) => this.updateRecipient(recipient)}
-        />
-      );
+    return (
+      <div>
+        <TransitionGroup>
+          {this.state.selectedRecipient ? (
+            <CSSTransition
+              nodeRef={this.selectRecipientRef}
+              in={this.state.selectedRecipient}
+              timeout={1000}
+              classNames="horizontal_slide"
+            >
+              <Recipients
+                nodeRef={this.selectRecipientRef}
+                selectedRecipient={(recipient) =>
+                  this.updateRecipient(recipient)
+                }
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
 
-    // STEP 2
-    if (this.state.activeScreen === "Enter Amount")
-      return (
-        <Amount
-          rec={this.state.trnxDetails.recipient}
-          selectedDetails={(amount, account) =>
-            this.updateDetails(amount, account)
-          }
-        />
-      );
+        <TransitionGroup>
+          {this.state.enterAmount ? (
+            <CSSTransition
+              nodeRef={this.enterAmountRef}
+              in={this.state.enterAmount}
+              timeout={1000}
+              classNames="horizontal_slide"
+            >
+              <Amount
+                nodeRef={this.enterAmountRef}
+                rec={this.state.trnxDetails.recipient}
+                selectedDetails={(amount, account) =>
+                  this.updateDetails(amount, account)
+                }
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
 
-    // Step 3
-    if (this.state.activeScreen === "Confirmation")
-      return (
-        <Confirmation
-          transactionType="SendMoney"
-          trxn={this.state.trnxDetails}
-          recipient={this.state.recipient}
-          confirmed={() => this.processTransaction()}
-        />
-      );
+        <TransitionGroup>
+          {this.state.confirmation ? (
+            <CSSTransition
+              nodeRef={this.confirmationRef}
+              in={this.state.confirmation}
+              timeout={1000}
+              classNames="slideIn_fadeOut"
+            >
+              <Confirmation
+                nodeRef={this.confirmationRef}
+                transactionType="SendMoney"
+                trxn={this.state.trnxDetails}
+                recipient={this.state.recipient}
+                confirmed={() => this.processTransaction()}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
 
-    // Step 4
-    if (this.state.activeScreen === "Processing Animation")
-      return (
-        <ProcessingAnimation
-          transactionComplete={() => this.transactionComplete()}
-          transactionType="SendMoney"
-          transactionDetails={this.state.trnxDetails}
-          recipient={this.state.recipient}
-        />
-      );
+        <TransitionGroup>
+          {this.state.processingAnimation ? (
+            <CSSTransition
+              nodeRef={this.processingAnimationRef}
+              in={this.state.processingAnimation}
+              timeout={1000}
+              classNames="fade"
+            >
+              <ProcessingAnimation
+                nodeRef={this.processingAnimationRef}
+                transactionComplete={() => this.transactionComplete()}
+                transactionType="SendMoney"
+                transactionDetails={this.state.trnxDetails}
+                recipient={this.state.recipient}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
 
-    if (this.state.activeScreen === "Transaction Complete")
-      return (
-        <TransactionComplete
-          transactionType="SendMoney"
-          changeScreen={() => {
-            this.resetScreen();
-          }}
-          returnHome={() => this.props.returnHome()}
-        />
-      );
+        <TransitionGroup>
+          {this.state.transactionComplete ? (
+            <CSSTransition
+              nodeRef={this.TransactionCompleteRef}
+              in={this.state.transactionComplete}
+              timeout={1000}
+              classNames="fade"
+            >
+              <TransactionComplete
+                nodeRef={this.TransactionCompleteRef}
+                transactionType="SendMoney"
+                changeScreen={() => {
+                  this.resetScreen();
+                }}
+                returnHome={() => this.props.returnHome()}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+      </div>
+    );
   }
 }
 

@@ -7,11 +7,10 @@ class Recipients extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    // this.viewTransactionDetails = this.viewTransactionDetails.bind(this);
   }
   render() {
     return (
-      <div id={style.recipient_container}>
+      <div id={style.recipient_container} ref={this.props.nodeRef}>
         <div className={style.page_title}>Select recipient</div>
         <div className={style.recipient_list}>
           {recipientData.map((recipient) => {
@@ -19,6 +18,7 @@ class Recipients extends React.Component {
               <div
                 className={style.recipient}
                 onClick={() => this.props.selectedRecipient(recipient)}
+                key={recipient.phoneNumber}
               >
                 {`${recipient.firstName} ${recipient.lastName}`}
               </div>
