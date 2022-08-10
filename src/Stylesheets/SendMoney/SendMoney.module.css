@@ -1,1 +1,6 @@
-
+#send_money_container {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: auto;
+}

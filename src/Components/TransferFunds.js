@@ -301,7 +301,7 @@ class TransferFunds extends React.Component {
 
   render() {
     return (
-      <div id="transfer_funds_container">
+      <div id="transfer_funds_container" ref={this.props.nodeRef}>
         <TransitionGroup>
           {this.state.screenView === "transferDetails" ? (
             <CSSTransition

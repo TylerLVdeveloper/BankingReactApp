@@ -26,7 +26,7 @@ class Account extends React.Component {
 class AccountSummary extends React.Component {
   render() {
     return (
-      <div id="account_summary_container">
+      <div id="account_summary_container" ref={this.props.nodeRef}>
         <UserGreeting />
         {accountData.map((accnt, i, _) => {
           return (

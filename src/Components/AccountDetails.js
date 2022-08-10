@@ -38,56 +38,51 @@ class AccountDetails extends React.Component {
   render() {
     const account = this.props.selectedAccount;
     return (
-      <div id={style.account_details_container}>
-        <TransitionGroup>
-          {this.state.transactionDetailsModal.visible ? (
-            <CSSTransition
-              nodeRef={this.resultModalRef}
-              in={this.state.transactionDetailsModal.visible}
-              timeout={500}
-              classNames="result_modal_transition"
-            >
-              <TransactionDetailsModal
-                trxn={this.state.transactionDetailsModal.transaction}
-                cancel={() => this.closeModal()}
-                nodeRef={this.resultModalRef}
-              />
-            </CSSTransition>
-          ) : null}
-        </TransitionGroup>
-
+      <div ref={this.props.nodeRef}>
         <div id={style.account_heading}>
           <div id={style.accountTitle}>{account.accountType}</div>
           <div id={style.accountNumber}>{account.accountNumber}</div>
-          <div id={style.account_summary_details}>
-            <div className={style.summary_label}>Available Balance</div>
-            <div className={style.summary_label}>Total Transactions</div>
-            <div className={style.summary_value}>
-              ${account.balance.toFixed(2)}
-            </div>
-            <div className={style.summary_value}>
-              {account.transactions.length}
-            </div>
+          <div className={style.summary_value}>
+            ${account.balance.toFixed(2)}
           </div>
+          <div className={style.summary_label}>Available Balance</div>
         </div>
+        <div id={style.account_details_container}>
+          <TransitionGroup>
+            {this.state.transactionDetailsModal.visible ? (
+              <CSSTransition
+                nodeRef={this.resultModalRef}
+                in={this.state.transactionDetailsModal.visible}
+                timeout={500}
+                classNames="result_modal_transition"
+              >
+                <TransactionDetailsModal
+                  trxn={this.state.transactionDetailsModal.transaction}
+                  cancel={() => this.closeModal()}
+                  nodeRef={this.resultModalRef}
+                />
+              </CSSTransition>
+            ) : null}
+          </TransitionGroup>
 
-        {account.transactions.map((transaction, i, _) => {
-          return (
-            <div
-              className={style.transaction}
-              onClick={() => this.viewTransactionDetails(transaction)}
-              key={i}
-            >
-              <div className={style.date}>{transaction.date}</div>
-              <div className={style.type}>{transaction.type}</div>
-              {transaction.action === "Add" ? (
-                <div className={style.added}>+ ${transaction.amount}</div>
-              ) : (
-                <div className={style.removed}>- ${transaction.amount}</div>
-              )}
-            </div>
-          );
-        })}
+          {account.transactions.map((transaction, i, _) => {
+            return (
+              <div
+                className={style.transaction}
+                onClick={() => this.viewTransactionDetails(transaction)}
+                key={i}
+              >
+                <div className={style.date}>{transaction.date}</div>
+                <div className={style.type}>{transaction.type}</div>
+                {transaction.action === "Add" ? (
+                  <div className={style.added}>+ ${transaction.amount}</div>
+                ) : (
+                  <div className={style.removed}>- ${transaction.amount}</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }

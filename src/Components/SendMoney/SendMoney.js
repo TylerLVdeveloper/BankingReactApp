@@ -3,6 +3,7 @@ import React from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import "Stylesheets/TransitionStyles.css";
+import style from "Stylesheets/SendMoney/SendMoney.module.css";
 
 import Recipients from "./Recipients.js";
 import Amount from "./Amount.js";
@@ -31,6 +32,8 @@ class SendMoney extends React.Component {
     this.TransactionCompleteRef = React.createRef(null);
     this.selectRecipientRef = React.createRef(null);
     this.enterAmountRef = React.createRef(null);
+    this.confirmationRef = React.createRef(null);
+    this.processingAnimationRef = React.createRef(null);
   }
 
   resetScreen() {
@@ -103,7 +106,7 @@ class SendMoney extends React.Component {
 
   render() {
     return (
-      <div>
+      <div ref={this.props.nodeRef} id={style.send_money_container}>
         <TransitionGroup>
           {this.state.selectedRecipient ? (
             <CSSTransition

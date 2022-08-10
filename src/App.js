@@ -7,24 +7,13 @@ import navigationOptions from "NavigationData.js";
 // Top Navigation Component
 import TopNavigation from "Components/TopNavigation";
 
+import "Stylesheets/TransitionStyles.css";
+
 //Main Content Components
 import AccountSummary from "Components/AccountSummary";
 import SendMoney from "Components/SendMoney/SendMoney";
 import TransferFunds from "Components/TransferFunds";
 import AccountDetails from "Components/AccountDetails";
-
-class MainContent extends React.Component {
-  render() {
-    if (this.props.activeWindow === "Accounts")
-      return <AccountSummary BtnClick={(i) => this.props.BtnClick(i)} />;
-    if (this.props.activeWindow === "Transfer Funds")
-      return <TransferFunds returnHome={() => this.props.returnHome()} />;
-    if (this.props.activeWindow === "Send Money")
-      return <SendMoney returnHome={() => this.props.returnHome()} />;
-    if (this.props.activeWindow === "Account Details")
-      return <AccountDetails selectedAccount={this.props.selectedAccount} />;
-  }
-}
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +23,11 @@ class App extends React.Component {
     };
     this.handleBtnClick = this.handleBtnClick.bind(this);
     this.accntClick = this.accntClick.bind(this);
+
+    this.accountsRef = React.createRef(null);
+    this.transferFundsRef = React.createRef(null);
+    this.sendMoneyRef = React.createRef(null);
+    this.accountDetailsRef = React.createRef(null);
   }
 
   accntClick(accnt) {
@@ -58,23 +52,69 @@ class App extends React.Component {
           BtnClick={(i) => this.handleBtnClick(i)}
           activeMenuOption={this.state.activeMenuOption}
         />
-        <TransitionGroup>
-          <CSSTransition
-            key={this.state.activeMenuOption.key}
-            timeout={1000}
-            classNames="contentChange"
-          >
-            <div className="main_content_container">
-              <MainContent
-                key={this.state.activeMenuOption.key}
-                activeWindow={this.state.activeMenuOption.name}
-                selectedAccount={this.state.selectedAccount}
-                BtnClick={(accnt) => this.accntClick(accnt)}
-                returnHome={() => this.returnHome()}
-              />
-            </div>
-          </CSSTransition>
-        </TransitionGroup>
+
+        <div className="main_content_container">
+          <TransitionGroup>
+            {this.state.activeMenuOption.name === "Accounts" ? (
+              <CSSTransition
+                nodeRef={this.accountsRef}
+                in={this.state.activeMenuOption.name === "Accounts"}
+                timeout={1000}
+                classNames="fade"
+              >
+                <AccountSummary
+                  BtnClick={(accnt) => this.accntClick(accnt)}
+                  nodeRef={this.accountsRef}
+                />
+              </CSSTransition>
+            ) : null}
+          </TransitionGroup>
+          <TransitionGroup>
+            {this.state.activeMenuOption.name === "Transfer Funds" ? (
+              <CSSTransition
+                nodeRef={this.transferFundsRef}
+                in={this.state.activeMenuOption.name === "Transfer Funds"}
+                timeout={1000}
+                classNames="fade"
+              >
+                <TransferFunds
+                  returnHome={() => this.returnHome()}
+                  nodeRef={this.transferFundsRef}
+                />
+              </CSSTransition>
+            ) : null}
+          </TransitionGroup>
+          <TransitionGroup>
+            {this.state.activeMenuOption.name === "Send Money" ? (
+              <CSSTransition
+                nodeRef={this.sendMoneyRef}
+                in={this.state.activeMenuOption.name === "Send Money"}
+                timeout={1000}
+                classNames="fade"
+              >
+                <SendMoney
+                  returnHome={() => this.returnHome()}
+                  nodeRef={this.sendMoneyRef}
+                />
+              </CSSTransition>
+            ) : null}
+          </TransitionGroup>
+          <TransitionGroup>
+            {this.state.activeMenuOption.name === "Account Details" ? (
+              <CSSTransition
+                nodeRef={this.accountDetailsRef}
+                in={this.state.activeMenuOption.name === "Account Details"}
+                timeout={1000}
+                classNames="fade"
+              >
+                <AccountDetails
+                  selectedAccount={this.state.selectedAccount}
+                  nodeRef={this.accountDetailsRef}
+                />
+              </CSSTransition>
+            ) : null}
+          </TransitionGroup>
+        </div>
       </div>
     );
   }
