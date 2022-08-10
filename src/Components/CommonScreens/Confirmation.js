@@ -11,7 +11,7 @@ class Confirmation extends React.Component {
 
   render() {
     return (
-      <div id={style.confirmation_container}>
+      <div id={style.confirmation_container} ref={this.props.nodeRef}>
         <div className={style.page_title}>Review & Confirm</div>
         <div className={style.sub_label}>
           {this.props.transactionType === "SendMoney" ? "Send" : null}

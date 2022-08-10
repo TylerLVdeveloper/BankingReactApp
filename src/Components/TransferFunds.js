@@ -3,6 +3,8 @@ import "Stylesheets/TransferFunds.css";
 import accountData from "AccountData.js";
 import dollarSign from "images/dollarSign.png";
 
+import "Stylesheets/TransitionStyles.css";
+
 import ProcessingAnimation from "Components/CommonScreens/ProcessingAnimation";
 import ResultModal from "Components/Modals/ResultModal.js"; // Displays result message to user after completed action
 import TransactionComplete from "Components/CommonScreens/TransactionComplete";
@@ -216,47 +218,6 @@ class TransferDetails extends React.Component {
   }
 }
 
-class TransferFundsContainer extends React.Component {
-  render() {
-    if (this.props.screenView === "transferDetails")
-      return (
-        <TransferDetails
-          startTransaction={(transactionDetails) =>
-            this.props.startTransaction(transactionDetails)
-          }
-        />
-      );
-
-    if (this.props.screenView === "confirmationScreen")
-      return (
-        <Confirmation
-          transactionType="TransferFunds"
-          trxn={this.props.currentTransaction}
-          confirmed={() => this.props.confirm()}
-          cancel={() => this.props.cancel()}
-        />
-      );
-
-    if (this.props.screenView === "processingAnimation")
-      return (
-        <ProcessingAnimation
-          transactionComplete={() => this.props.transactionComplete()}
-          transactionType="TransferFunds"
-          transactionDetails={this.props.currentTransaction}
-        />
-      );
-
-    if (this.props.screenView === "transferComplete")
-      return (
-        <TransactionComplete
-          transactionType="TransferFunds"
-          changeView={(viewChoice) => this.props.changeView(viewChoice)}
-          returnHome={() => this.props.returnHome()}
-        />
-      );
-  }
-}
-
 class TransferFunds extends React.Component {
   constructor(props) {
     super(props);
@@ -267,6 +228,11 @@ class TransferFunds extends React.Component {
     this.processTransaction = this.processTransaction.bind(this);
     this.transactionComplete = this.transactionComplete.bind(this);
     this.changeView = this.changeView.bind(this);
+
+    this.transferDetailsRef = React.createRef(null);
+    this.confirmationScreenRef = React.createRef(null);
+    this.processingAnimationRef = React.createRef(null);
+    this.transferCompleteRef = React.createRef(null);
   }
 
   startTransaction(transactionDetails) {
@@ -337,25 +303,76 @@ class TransferFunds extends React.Component {
     return (
       <div id="transfer_funds_container">
         <TransitionGroup>
-          <CSSTransition
-            key={this.state.screenView}
-            timeout={1000}
-            classNames="contentChange"
-          >
-            <TransferFundsContainer
-              screenView={this.state.screenView}
-              key={this.state.screenView}
-              startTransaction={(transactionDetails) =>
-                this.startTransaction(transactionDetails)
-              }
-              confirm={() => this.processTransaction()}
-              cancel={() => this.changeView("transferDetails")}
-              currentTransaction={this.state.currentTransaction}
-              transactionComplete={() => this.transactionComplete()}
-              changeView={(viewChoice) => this.changeView(viewChoice)}
-              returnHome={() => this.props.returnHome()}
-            />
-          </CSSTransition>
+          {this.state.screenView === "transferDetails" ? (
+            <CSSTransition
+              nodeRef={this.transferDetailsRef}
+              in={this.state.screenView === "transferDetails"}
+              timeout={1000}
+              classNames="horizontal_slide"
+            >
+              <TransferDetails
+                nodeRef={this.transferDetailsRef}
+                startTransaction={(transactionDetails) =>
+                  this.startTransaction(transactionDetails)
+                }
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+
+        <TransitionGroup>
+          {this.state.screenView === "confirmationScreen" ? (
+            <CSSTransition
+              nodeRef={this.confirmationScreenRef}
+              in={this.state.screenView === "confirmationScreen"}
+              timeout={1000}
+              classNames="slideIn_fadeOut"
+            >
+              <Confirmation
+                nodeRef={this.confirmationScreenRef}
+                transactionType="TransferFunds"
+                trxn={this.state.currentTransaction}
+                confirmed={() => this.processTransaction()}
+                cancel={() => this.changeView("transferDetails")}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+
+        <TransitionGroup>
+          {this.state.screenView === "processingAnimation" ? (
+            <CSSTransition
+              nodeRef={this.processingAnimationRef}
+              in={this.state.screenView === "processingAnimation"}
+              timeout={1000}
+              classNames="fade"
+            >
+              <ProcessingAnimation
+                nodeRef={this.processingAnimationRef}
+                transactionComplete={() => this.transactionComplete()}
+                transactionType="TransferFunds"
+                transactionDetails={this.state.currentTransaction}
+              />
+            </CSSTransition>
+          ) : null}
+        </TransitionGroup>
+
+        <TransitionGroup>
+          {this.state.screenView === "transferComplete" ? (
+            <CSSTransition
+              nodeRef={this.transferCompleteRef}
+              in={this.state.screenView === "transferComplete"}
+              timeout={1000}
+              classNames="fade"
+            >
+              <TransactionComplete
+                nodeRef={this.transferCompleteRef}
+                transactionType="TransferFunds"
+                changeView={(viewChoice) => this.changeView(viewChoice)}
+                returnHome={() => this.props.returnHome()}
+              />
+            </CSSTransition>
+          ) : null}
         </TransitionGroup>
       </div>
     );
