@@ -198,7 +198,7 @@ class TransferDetails extends React.Component {
               type="number"
               id="Amount"
               className="transfer_field"
-              placeholder="ex. 20.00"
+              placeholder="Enter amount"
               value={this.state.amount}
               onChange={this.handleChange}
               pattern="[0-9]{7}"

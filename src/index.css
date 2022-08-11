@@ -1,10 +1,6 @@
 body {
   margin: 0;
 
-  background-color: black;
-  background-image: url("./images/trees.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -29,7 +25,6 @@ code {
   top: 100px;
   width: 100vw;
   height: auto;
-  /* background-image: radial-gradient(circle, red, yellow, green); */
 }
 
 .contentChange-enter {
@@ -51,16 +46,16 @@ code {
 }
 
 .result_modal_transition-enter {
-  transform: translateY(-100vw);
+  transform: translateY(-200%);
 }
 .result_modal_transition-enter-active {
-  transform: translateY(0vw);
+  transform: translateY(0%);
   transition: transform 500ms;
 }
 .result_modal_transition-exit {
-  transform: translateY(0vw);
+  transform: translateY(0%);
 }
 .result_modal_transition-exit-active {
-  transform: translateY(-100vw);
+  transform: translateY(-200%);
   transition: transform 500ms;
 }

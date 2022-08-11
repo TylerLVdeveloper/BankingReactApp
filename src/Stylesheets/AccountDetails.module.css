@@ -102,3 +102,44 @@
   color: white;
   text-align: left;
 }
+
+@media only screen and (max-width: 600px) {
+  #accountTitle {
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 2em;
+  }
+
+  #account_details_container {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+    left: 0%;
+    top: 250px;
+  }
+
+  #account_heading {
+    position: absolute;
+    width: 70%;
+    top: 0px;
+    left: 15%;
+    height: 130px;
+    text-align: center;
+    font-family: "Heebo", sans-serif;
+    padding-top: 15px;
+    padding-bottom: 5px;
+  }
+
+  .transaction {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 5px;
+    background-color: rgba(0, 0, 0, 0.778);
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    grid-template-rows: 100%;
+    height: auto;
+    width: 98%;
+    transition: all 0.2s;
+  }
+}

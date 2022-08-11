@@ -47,7 +47,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="page_container">
         <TopNavigation
           BtnClick={(i) => this.handleBtnClick(i)}
           activeMenuOption={this.state.activeMenuOption}

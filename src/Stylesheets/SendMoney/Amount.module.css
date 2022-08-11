@@ -1,9 +1,8 @@
 #amount_container {
   position: absolute;
   top: 50px;
-  left: 20%;
   height: auto;
-  width: 60%;
+  width: 100%;
 }
 
 .page_title {
@@ -15,7 +14,7 @@
 }
 
 #form_container {
-  width: 50%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -41,23 +40,23 @@ select {
 
 #amount input {
   margin-top: 15px;
-  margin-left: 25%;
-  width: 46%;
-  padding: 2%;
+  margin-left: 40%;
+  width: 18%;
+  padding: 0.7%;
 }
 
 #account select {
   margin-top: 15px;
-  margin-left: 25%;
-  width: 50%;
-  padding: 2%;
+  margin-left: 40%;
+  width: 19.8%;
+  padding: 0.7%;
 }
 
 #review_btn input {
   margin-top: 15px;
-  margin-left: 39%;
-  width: 20%;
-  padding: 2%;
+  margin-left: 44.5%;
+  width: 10%;
+  padding: 0.7%;
   text-align: center;
   background-color: rgba(29, 226, 3, 0.678);
   transition: background-color 0.7s;
@@ -66,4 +65,30 @@ select {
 #review_btn input:hover {
   background-color: rgba(29, 226, 3, 0.8);
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  #amount input {
+    margin-top: 15px;
+    margin-left: 26.5%;
+    width: 40%;
+    padding: 2%;
+  }
+
+  #account select {
+    margin-top: 15px;
+    margin-left: 26.5%;
+    width: 45%;
+    padding: 2%;
+  }
+
+  #review_btn input {
+    margin-top: 15px;
+    margin-left: 34%;
+    width: 30%;
+    padding: 2%;
+    text-align: center;
+    background-color: rgba(29, 226, 3, 0.678);
+    transition: background-color 0.7s;
+  }
 }

@@ -2,7 +2,7 @@
   font-size: 1em;
   font-weight: 700;
   color: white;
-  background-color: rgba(29, 226, 3, 0.678);
+  background-color: rgba(29, 226, 3, 0.8);
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -14,7 +14,7 @@
 
 .confirmation_btn:hover {
   cursor: pointer;
-  background-color: rgba(29, 226, 3, 0.8);
+  background-color: rgb(29, 226, 3);
 }
 
 .confirmation_btn:active {

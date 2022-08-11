@@ -108,3 +108,20 @@
   font-weight: 600;
   color: rgb(49, 49, 49);
 }
+
+@media only screen and (max-width: 600px) {
+  #trxn_details_modal {
+    position: fixed;
+    top: 20%;
+    left: 5%;
+    width: 90%;
+    height: 60%;
+    color: rgb(42, 42, 42);
+    border-radius: 20px;
+    font-size: 1vw;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 60% 20%;
+  }
+}
