@@ -11,7 +11,7 @@ class ResultModal extends React.Component {
   componentDidMount() {
     if (this.props.resultType === "fail")
       this.setState({
-        message: `Requested transfer amount exceeds available limit.`,
+        message: `Amount exceeds available balance.`,
       });
   }
   render() {

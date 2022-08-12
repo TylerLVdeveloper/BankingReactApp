@@ -1,5 +1,7 @@
 .confirmation_container {
-  margin-left: 20%;
+  position: absolute;
+  top: 0px;
+  left: 20%;
   height: 600px;
   width: 60%;
   text-align: center;
@@ -12,8 +14,8 @@
   text-align: center;
   color: white;
   overflow: hidden;
-  margin-bottom: 70px;
-  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-top: -10px;
 }
 
 .sub_label {
@@ -39,8 +41,7 @@
     text-align: center;
     color: white;
     overflow: hidden;
-    margin-bottom: 70px;
-    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
   .sub_label {
@@ -54,7 +55,7 @@
     font-weight: 600;
     font-size: 2.5em;
     color: white;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-align: center;
   }
 }

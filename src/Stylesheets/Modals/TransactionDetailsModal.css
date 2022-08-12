@@ -124,4 +124,11 @@
     grid-template-columns: 100%;
     grid-template-rows: 20% 60% 20%;
   }
+
+  .cancel_icon {
+    position: absolute;
+    top: -3%;
+    left: 0.7%;
+    opacity: 0.8;
+  }
 }

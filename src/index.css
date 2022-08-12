@@ -1,6 +1,6 @@
 body {
   margin: 0;
-
+  background-color: rgb(31, 31, 31);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -13,14 +13,14 @@ code {
     monospace;
 }
 
-.coming_soon {
-  color: white;
-  text-align: center;
-  font-size: 3em;
-  padding: 200px;
+.main_content_container {
+  position: absolute;
+  top: 100px;
+  width: 100vw;
+  height: auto;
 }
 
-.main_content_container {
+#top_nav_container {
   position: absolute;
   top: 100px;
   width: 100vw;
@@ -58,4 +58,22 @@ code {
 .result_modal_transition-exit-active {
   transform: translateY(-200%);
   transition: transform 500ms;
+}
+
+.screen_title {
+  font-size: 1.8em;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.475);
+  font-weight: 900;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+  .main_content_container {
+    position: absolute;
+    top: 0px;
+    width: 100vw;
+    height: auto;
+  }
 }

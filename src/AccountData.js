@@ -2,7 +2,7 @@ const accountData = [
   {
     accountType: "Checking",
     accountNumber: "xxxxxx1234",
-    balance: 100,
+    balance: 1000,
     key: "0",
     transactions: [],
   },

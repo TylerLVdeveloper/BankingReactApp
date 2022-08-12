@@ -8,14 +8,25 @@ class AcceptButton extends React.Component {
   }
 
   render() {
-    return (
-      <button
-        onClick={() => this.props.onClick()}
-        className={style.confirmation_btn}
-      >
-        {this.props.text}
-      </button>
-    );
+    if (this.props.text === "Cancel")
+      return (
+        <button
+          onClick={() => this.props.onClick()}
+          className={`${style.confirmation_btn} ${style.cancel}`}
+        >
+          {this.props.text}
+        </button>
+      );
+
+    if (this.props.text === "Confirm")
+      return (
+        <button
+          onClick={() => this.props.onClick()}
+          className={`${style.confirmation_btn} ${style.confirm}`}
+        >
+          {this.props.text}
+        </button>
+      );
   }
 }
 

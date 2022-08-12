@@ -2,10 +2,12 @@
   font-size: 1em;
   font-weight: 700;
   color: white;
-  background-color: rgba(29, 226, 3, 0.8);
   border: none;
   border-radius: 5px;
-  padding: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -14,9 +16,49 @@
 
 .confirmation_btn:hover {
   cursor: pointer;
-  background-color: rgb(29, 226, 3);
 }
 
 .confirmation_btn:active {
   transform: scale(90%);
+}
+
+.confirm {
+  background-color: rgba(29, 226, 3, 0.8);
+}
+
+.confirm:hover {
+  background-color: rgb(29, 226, 3);
+}
+
+.cancel {
+  background-color: rgba(138, 138, 138, 0.8);
+}
+
+.cancel:hover {
+  background-color: rgba(138, 138, 138);
+}
+
+@media only screen and (max-width: 600px) {
+  .confirmation_btn {
+    font-size: 1em;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  .confirm:hover {
+    background-color: rgba(29, 226, 3, 0.8);
+  }
+  .cancel:hover {
+    background-color: rgba(138, 138, 138, 0.8);
+  }
 }

@@ -30,7 +30,7 @@
 }
 #account_details_container {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.378);
+  background-color: rgba(255, 255, 255, 0.107);
   border-radius: 0 0 5px 5px;
   width: 70%;
   height: 400px;
@@ -115,7 +115,7 @@
     height: 400px;
     overflow-y: scroll;
     left: 0%;
-    top: 250px;
+    top: 200px;
   }
 
   #account_heading {
@@ -141,5 +141,11 @@
     height: auto;
     width: 98%;
     transition: all 0.2s;
+  }
+
+  /* width */
+  #account_details_container::-webkit-scrollbar {
+    background-color: none;
+    width: 0px;
   }
 }

@@ -39,6 +39,8 @@ class Confirmation extends React.Component {
         </div>
 
         <AcceptButton onClick={() => this.props.confirmed()} text={"Confirm"} />
+        <br />
+        <AcceptButton onClick={() => this.props.cancelled()} text={"Cancel"} />
       </div>
     );
   }

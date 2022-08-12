@@ -107,6 +107,7 @@ class SendMoney extends React.Component {
   render() {
     return (
       <div ref={this.props.nodeRef} id={style.send_money_container}>
+        <div className="screen_title">Send Money</div>
         <TransitionGroup>
           {this.state.selectedRecipient ? (
             <CSSTransition
@@ -158,6 +159,7 @@ class SendMoney extends React.Component {
                 trxn={this.state.trnxDetails}
                 recipient={this.state.recipient}
                 confirmed={() => this.processTransaction()}
+                cancelled={() => this.props.returnHome()}
               />
             </CSSTransition>
           ) : null}

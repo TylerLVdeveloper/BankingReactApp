@@ -38,3 +38,27 @@ img {
   width: 35px;
   height: 35px;
 }
+
+@media only screen and (max-width: 600px) {
+  #top_nav_container {
+    top: auto;
+    bottom: 0px;
+    width: 100%;
+    height: auto;
+    background-color: rgba(56, 56, 56, 0.7);
+  }
+
+  .btn {
+    font-size: 0.6em;
+    text-align: center;
+    line-height: 15px;
+    padding: 10%;
+    color: white;
+  }
+
+  img {
+    padding-top: 5%;
+    width: 35px;
+    height: 35px;
+  }
+}

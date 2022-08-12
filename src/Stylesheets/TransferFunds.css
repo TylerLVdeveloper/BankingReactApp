@@ -7,7 +7,7 @@
 
 #transfer_container {
   position: absolute;
-  top: 0px;
+  top: 50px;
   width: 50%;
   height: auto;
   margin-left: 25%;
@@ -42,7 +42,7 @@ select {
   margin-bottom: 10px;
   font-size: 1.2em;
   padding: 8px;
-  width: 70%;
+  width: 50%;
   display: block;
 }
 
@@ -71,7 +71,6 @@ select:hover {
   margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 5px;
 }
 
 #transfer_btn input:hover {
@@ -85,7 +84,7 @@ select:hover {
 
 .transfer_message_container {
   position: absolute;
-  top: 10px;
+  top: 100px;
   width: 100%;
   height: auto;
   color: white;
@@ -150,7 +149,7 @@ select:hover {
 
 @media only screen and (max-width: 600px) {
   #transfer_container {
-    top: 0px;
+    top: 50px;
     width: 100%;
     margin-left: 0%;
     margin-top: 50px;
@@ -158,5 +157,34 @@ select:hover {
 
   .transfer_complete_btn {
     width: 50%;
+  }
+
+  #transfer_btn input {
+    display: block;
+    background-color: rgba(29, 226, 3, 0.804);
+    width: auto;
+    transition: all 0.5s;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  #transfer_container input,
+  select {
+    margin-top: -25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(84, 161, 250, 0.5);
+    color: white;
+    border: none;
+    border-radius: 2.5px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    padding: 8px;
+    width: 70%;
+    display: block;
   }
 }

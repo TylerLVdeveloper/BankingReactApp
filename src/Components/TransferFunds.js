@@ -208,7 +208,7 @@ class TransferDetails extends React.Component {
             <div id="transfer_btn">
               <input
                 type={this.state.readyToSubmit ? "submit" : "hidden"}
-                value="Transfer"
+                value="Review"
               />
             </div>
           </form>
@@ -302,6 +302,7 @@ class TransferFunds extends React.Component {
   render() {
     return (
       <div id="transfer_funds_container" ref={this.props.nodeRef}>
+        <div className="screen_title">Transfer</div>
         <TransitionGroup>
           {this.state.screenView === "transferDetails" ? (
             <CSSTransition
@@ -333,7 +334,7 @@ class TransferFunds extends React.Component {
                 transactionType="TransferFunds"
                 trxn={this.state.currentTransaction}
                 confirmed={() => this.processTransaction()}
-                cancel={() => this.changeView("transferDetails")}
+                cancelled={() => this.props.returnHome()}
               />
             </CSSTransition>
           ) : null}

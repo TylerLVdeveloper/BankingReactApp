@@ -7,7 +7,7 @@
   height: auto;
   border-radius: 0 0 3px 3px;
   padding: 1%;
-  font-size: 1vw;
+  font-size: 0.8em;
   text-align: center;
 }
 
@@ -20,4 +20,19 @@
   background-color: rgba(255, 0, 0, 0.879);
   color: white;
   font-weight: 800;
+}
+
+@media only screen and (max-width: 600px) {
+  #result_modal {
+    position: fixed;
+    top: 0%;
+    z-index: 2;
+    left: 0%;
+    width: 84%;
+    height: auto;
+    border-radius: 0 0 3px 3px;
+    padding: 8%;
+    font-size: 0.8em;
+    text-align: center;
+  }
 }
