@@ -21,9 +21,15 @@ class TransactionDetailsModal extends React.Component {
           </div>
 
           <div id="trxn_amount">
-            ${this.props.trxn.amount}
+            $
+            {Number(this.props.trxn.amount).toLocaleString("en-US", {
+              minimumFractionDigits: 2,
+            })}
             <div id="trxn_balance">
-              Ending Balance: ${this.props.trxn.endingBalance}
+              Ending Balance: $
+              {Number(this.props.trxn.endingBalance).toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+              })}
             </div>
           </div>
 

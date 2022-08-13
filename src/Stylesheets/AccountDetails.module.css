@@ -70,7 +70,7 @@
   margin-bottom: 5px;
   background-color: rgba(0, 0, 0, 0.778);
   display: grid;
-  grid-template-columns: 10% 80% 10%;
+  grid-template-columns: 20% 60% 20%;
   grid-template-rows: 100%;
   height: auto;
   width: 98%;
@@ -136,7 +136,7 @@
     margin-bottom: 5px;
     background-color: rgba(0, 0, 0, 0.778);
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 30% 40% 30%;
     grid-template-rows: 100%;
     height: auto;
     width: 98%;

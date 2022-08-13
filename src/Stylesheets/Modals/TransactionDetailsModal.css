@@ -81,7 +81,7 @@
 
 #trxn_amount {
   text-align: center;
-  font-size: 55pt;
+  font-size: 5em;
   font-weight: 700;
   color: rgb(49, 49, 49);
   padding-top: 20%;
@@ -130,5 +130,13 @@
     top: -3%;
     left: 0.7%;
     opacity: 0.8;
+  }
+
+  #trxn_amount {
+    text-align: center;
+    font-size: 15em;
+    font-weight: 700;
+    color: rgb(49, 49, 49);
+    padding-top: 20%;
   }
 }

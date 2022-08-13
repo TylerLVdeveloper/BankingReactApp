@@ -9,6 +9,14 @@ class Confirmation extends React.Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    const amount = Number(this.props.trxn.amount);
+    const transactionAmount = amount.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+    });
+    this.setState({ transactionAmount: transactionAmount });
+  }
+
   render() {
     return (
       <div id={style.confirmation_container} ref={this.props.nodeRef}>
@@ -17,7 +25,7 @@ class Confirmation extends React.Component {
           {this.props.transactionType === "SendMoney" ? "Send" : null}
           {this.props.transactionType === "TransferFunds" ? "Transfer" : null}
         </div>
-        <div className={style.main_label}>${this.props.trxn.amount}</div>
+        <div className={style.main_label}>${this.state.transactionAmount}</div>
         {this.props.transactionType === "TransferFunds" ? (
           <div className={style.sub_label}>From</div>
         ) : null}

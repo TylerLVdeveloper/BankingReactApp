@@ -29,10 +29,13 @@ class AccountSummary extends React.Component {
       <div id="account_summary_container" ref={this.props.nodeRef}>
         <UserGreeting />
         {accountData.map((accnt, i, _) => {
+          const balance = accnt.balance.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+          });
           return (
             <Account
               accountType={accnt.accountType}
-              balance={accnt.balance.toFixed(2)}
+              balance={balance}
               key={accnt.key}
               BtnClick={() => this.props.BtnClick(accnt)}
             />

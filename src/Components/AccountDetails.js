@@ -37,14 +37,15 @@ class AccountDetails extends React.Component {
 
   render() {
     const account = this.props.selectedAccount;
+    const balance = account.balance.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+    });
     return (
       <div ref={this.props.nodeRef}>
         <div id={style.account_heading}>
           <div id={style.accountTitle}>{account.accountType}</div>
           <div id={style.accountNumber}>{account.accountNumber}</div>
-          <div className={style.summary_value}>
-            ${account.balance.toFixed(2)}
-          </div>
+          <div className={style.summary_value}>${balance}</div>
           <div className={style.summary_label}>Available Balance</div>
         </div>
         <div id={style.account_details_container}>
@@ -75,9 +76,19 @@ class AccountDetails extends React.Component {
                 <div className={style.date}>{transaction.date}</div>
                 <div className={style.type}>{transaction.type}</div>
                 {transaction.action === "Add" ? (
-                  <div className={style.added}>+ ${transaction.amount}</div>
+                  <div className={style.added}>
+                    + $
+                    {Number(transaction.amount).toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </div>
                 ) : (
-                  <div className={style.removed}>- ${transaction.amount}</div>
+                  <div className={style.removed}>
+                    - $
+                    {Number(transaction.amount).toLocaleString("en-US", {
+                      minimumFractionDigits: 2,
+                    })}
+                  </div>
                 )}
               </div>
             );
